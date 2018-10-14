@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">tutorStage1</string>
+    <string name="edit_message">Enter Your Name</string>
+    <string name="button_send">Log In</string>
+</resources>
