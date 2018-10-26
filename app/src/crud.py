@@ -1,4 +1,4 @@
-## I didnt write this its from the internet, just a nice example of what needs to happen
+# I didn't write this its from the internet, just a nice example of what needs to happen
 
 
 from flask import Flask, request, jsonify
@@ -44,7 +44,7 @@ def add_user():
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify(new_user)
+    return user_schema.jsonify(new_user)
 
 
 # endpoint to show all users
