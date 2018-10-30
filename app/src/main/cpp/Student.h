@@ -1,16 +1,18 @@
 //
-// Created by Poe on 10/28/2018.
+// Created by Tom Heysel on 10/27/2018.
 //
 
-#ifndef TUTORSTAGE1_STUDENT_H
-#define TUTORSTAGE1_STUDENT_H
+#pragma once
 
+#include "Person.h"
+#include "Tutor.h"
 
-
-class Student {
+class Student : public Person{
+public:
+    void rateTutor(Tutor tutor, int rating);
+private:
 
 };
 
 
 
-#endif //TUTORSTAGE1_STUDENT_H
