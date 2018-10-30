@@ -15,7 +15,7 @@ public:
 
 
     //Accesors
-    std::vector<std::string> getCourses();
+    std::string getCourses();
     std::string getFirstName();
     std::string getLastName();
     std::string getEmail();
@@ -38,7 +38,7 @@ public:
 
 private:
     //Private Attributes
-    std::vector<std::string>  courses;
+    std::string  courses;//all courses comma deliminated
     std::string first_name;
     std::string last_name;
     std::string email;

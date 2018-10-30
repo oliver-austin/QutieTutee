@@ -14,7 +14,7 @@ Person::Person(std::string email){
 }
 
 //Accessors
-std::vector<std::string> Person::getCourses() {
+std::string Person::getCourses() {
   return clone(courses);
 }
 
@@ -44,7 +44,12 @@ std::string Person::getLocation() {
 
 //Mutators
 void Person::setCourses(std::string courseCode){//entering courses one at a time
-  courses.push_back(courseCode);
+    if(courses == NULL) {
+        courses = courseCode;
+    }
+    else {
+        courses = courses + ", " + courseCode;
+    }
 }
 
 void Person::setFirstName(std::string first_name) {
@@ -77,10 +82,4 @@ std::string Person::clone(std::string original) {
   return copy;
 }
 
-std::vector<std::string> Person::clone(std::vector<std::string> original){
-  std::vector<std::string> clone;
-  for(std::string course : original){
-    clone.push_back(course);
-  }
-  return clone;
 }
