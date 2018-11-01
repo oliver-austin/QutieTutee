@@ -12,7 +12,7 @@ public class TutorProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_profile);
-        Button mTutorStatusActivity = (Button)findViewById(R.id.tutorStatusActivityButton);
+        Button mTutorStatusActivity = (Button)findViewById(R.id.ConfirmButton);
         mTutorStatusActivity.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 switchTutorStatusActivity(view);
