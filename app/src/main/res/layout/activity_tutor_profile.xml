@@ -22,6 +22,7 @@
         android:layout_height="22dp"
         android:text="@string/name"
         app:layout_constraintEnd_toEndOf="@+id/NameTextBox"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/NameTextBox"
         app:layout_constraintTop_toBottomOf="@+id/SwitchToStudentButton"
         android:layout_marginTop="20dp" />
