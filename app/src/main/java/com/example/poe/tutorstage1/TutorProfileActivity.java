@@ -18,10 +18,20 @@ public class TutorProfileActivity extends AppCompatActivity {
                 switchTutorStatusActivity(view);
             }
         });
+        Button mSwitchToStudentActivity = (Button)findViewById(R.id.SwitchToStudentButton);
+        mSwitchToStudentActivity.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                switchStudentProfileActivity(view);
+            }
+        });
     }
 
     public void switchTutorStatusActivity(View view) {
         Intent intent = new Intent(this, TutorStatusActivity.class);
+        startActivity(intent);
+    }
+    public void switchStudentProfileActivity(View view) {
+        Intent intent = new Intent(this, StudentProfileActivity.class);
         startActivity(intent);
     }
 }
