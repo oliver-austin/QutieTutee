@@ -1,5 +1,5 @@
 //
-// Created by Tom Heysel on 10/27/2018.
+// Created by Poe on 10/28/2018.
 //
 
 #include "Tutor.h"
@@ -54,3 +54,22 @@ void Tutor::setAvailability(bool status, bool in_session) {
 void Tutor::setPrice(float price) {
     this->price = price;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
