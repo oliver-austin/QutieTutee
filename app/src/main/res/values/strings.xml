@@ -12,16 +12,16 @@
 
     //List Page
     <string name="title_activity_tutor_list">tutorList</string>
-    <string name = "name">Name:</string>
-    <string name = "courses">Courses I can teach:</string>
-    <string name = "contact_info">Contact Info:</string>
-    <string name = "rate">Rate:</string>
-    <string name = "bio">Bio:</string>
-    <string name = "available_offline">Available Offline:</string>
-    <string name = "set_status">Set Status</string>
-    <string name = "confirm">Confirm</string>
-    <string name = "edit">Edit</string>
-    <string name = "switch_to_student">Switch to Student</string>
+    <string name="name">Name:</string>
+    <string name="courses">Courses I can teach:</string>
+    <string name="contact_info">Contact Info:</string>
+    <string name="rate">Rate:</string>
+    <string name="bio">Bio:</string>
+    <string name="available_offline">Available Offline:</string>
+    <string name="set_status">Set Status</string>
+    <string name="confirm">Confirm</string>
+    <string name="edit">Edit</string>
+    <string name="switch_to_student">Switch to Student</string>
     <string name="action_settings">Settings</string>
     <string name = "button_editMode">Edit</string>
 </resources>

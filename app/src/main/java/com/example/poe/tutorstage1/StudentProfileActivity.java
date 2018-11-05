@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class StudentProfileActivity extends AppCompatActivity {
 
@@ -18,10 +19,24 @@ public class StudentProfileActivity extends AppCompatActivity {
                 switchTutorListActivity(view);
             }
         });
+
+        Button mStudentProfileEditActivity = (Button)findViewById(R.id.enterEditMode);
+        mStudentProfileEditActivity.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                switchStudentProfileEditActivity(view);
+            }
+        });
+
     }
     public void switchTutorListActivity(View view) {
         Intent intent = new Intent(this, TutorListActivity.class);
         startActivity(intent);
     }
+
+    public void switchStudentProfileEditActivity(View view) {
+        Intent intent = new Intent(this, StudentProfileEditActivity.class);
+        startActivity(intent);
+    }
+
 
 }
