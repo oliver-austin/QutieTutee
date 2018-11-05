@@ -25,7 +25,6 @@ public class StudentProfileEditActivity extends AppCompatActivity {
             public void onClick(View view){
                 String userName =  mUserName.getText().toString();
                 String newUserName = saveProfile(userName);
-                //Send to database
                 Toast.makeText(StudentProfileEditActivity.this, newUserName,
                         Toast.LENGTH_LONG).show();
             }
