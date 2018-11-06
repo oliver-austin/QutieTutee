@@ -11,39 +11,47 @@ import android.widget.Toast;
 
 public class StudentProfileActivity extends AppCompatActivity {
     static {
-        System.loadLibrary("native-lib");
+        System.loadLibrary("student-profile");
     }
     private EditText mName;
     private EditText mClass;
+    private Button mSave;
+    private Button mEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_profile);
+
         mName = findViewById(R.id.userName);
         mClass = findViewById(R.id.classList);
-        mName.setFocusable(true);
-        mClass.setFocusable(true);
-        Button mTutorListActivity = (Button) findViewById(R.id.tutorListActivityButton);
-        mTutorListActivity.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                switchTutorListActivity(view);
-            }
-        });
-        Button mStudentProfileEdit = (Button) findViewById(R.id.enterEditMode);
-        mStudentProfileEdit.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                toggleEditProfile();
-            }
 
-        });
-        Button mSave = (Button)findViewById(R.id.saveProfile);
+        mName.setFocusableInTouchMode(false);
+        mClass.setFocusableInTouchMode(false);
+
+        mSave = findViewById(R.id.saveProfile);
+        mSave.setVisibility(View.INVISIBLE);
         mSave.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
                 String userName =  mName.getText().toString();
                 String newUserName = saveProfile(userName);
                 Toast.makeText(StudentProfileActivity.this, newUserName,
                         Toast.LENGTH_LONG).show();
+                toggleSaveProfile();
             }
+        });
+
+        Button mTutorListActivity = (Button) findViewById(R.id.tutorListActivityButton);
+        mTutorListActivity.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                switchTutorListActivity(view);
+            }
+        });
+        mEdit = findViewById(R.id.enterEditMode);
+        mEdit.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                toggleEditProfile();
+            }
+
         });
     }
     public void switchTutorListActivity(View view) {
@@ -51,14 +59,19 @@ public class StudentProfileActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void toggleEditProfile(){
-        if(mName.isFocusable()){
-            mName.setFocusable(false);
-            mClass.setFocusable(false);
-        }
-        else{
-            mName.setFocusable(true);
-            mClass.setFocusable(true);
-        }
+            mName.setFocusableInTouchMode(true);
+            mClass.setFocusableInTouchMode(true);
+            mSave.setVisibility(View.VISIBLE);
+            mEdit.setVisibility(View.INVISIBLE);
+    }
+    public void toggleSaveProfile(){
+        mName.setFocusableInTouchMode(false);
+        mClass.setFocusableInTouchMode(false);
+        mSave.setVisibility(View.INVISIBLE);
+        mEdit.setVisibility(View.VISIBLE);
+        mName.clearFocus();
+        mClass.clearFocus();
+
     }
     public native String saveProfile(String userName);
 }
