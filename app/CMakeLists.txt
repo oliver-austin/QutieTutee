@@ -36,6 +36,14 @@ add_library(
 
 
 
+add_library( # Sets the name of the library.
+        student-profile
+
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        src/main/cpp/student-profile.cpp )
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
 # default, you only need to specify the name of the public NDK library
@@ -57,6 +65,7 @@ target_link_libraries( # Specifies the target library.
         native-lib
         tutor-profile
         landing-activity
+        student-profile
 
         # Links the target library to the log library
         # included in the NDK.

@@ -26,7 +26,6 @@
         <activity android:name=".StudentProfileActivity" />
         <activity android:name=".TutorProfileActivity" />
         <activity android:name=".TutorStatusActivity" />
-        <activity android:name=".StudentProfileEditActivity"></activity>
     </application>
 
 </manifest>
