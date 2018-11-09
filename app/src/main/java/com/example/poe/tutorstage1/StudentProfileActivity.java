@@ -17,6 +17,7 @@ public class StudentProfileActivity extends AppCompatActivity {
     private EditText mClass;
     private Button mSave;
     private Button mEdit;
+    private Button mSwitchToTutorActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +47,12 @@ public class StudentProfileActivity extends AppCompatActivity {
                 switchTutorListActivity(view);
             }
         });
+        mSwitchToTutorActivity = findViewById(R.id.SwitchToTutorButton);
+        mSwitchToTutorActivity.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                switchTutorProfileActivity(view);
+            }
+        });
         mEdit = findViewById(R.id.enterEditMode);
         mEdit.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -63,15 +70,21 @@ public class StudentProfileActivity extends AppCompatActivity {
             mClass.setFocusableInTouchMode(true);
             mSave.setVisibility(View.VISIBLE);
             mEdit.setVisibility(View.INVISIBLE);
+            mSwitchToTutorActivity.setVisibility(View.INVISIBLE);
     }
     public void toggleSaveProfile(){
         mName.setFocusableInTouchMode(false);
         mClass.setFocusableInTouchMode(false);
         mSave.setVisibility(View.INVISIBLE);
         mEdit.setVisibility(View.VISIBLE);
+        mSwitchToTutorActivity.setVisibility(View.VISIBLE);
         mName.clearFocus();
         mClass.clearFocus();
 
+    }
+    public void switchTutorProfileActivity(View view) {
+        Intent intent = new Intent(this, TutorProfileActivity.class);
+        startActivity(intent);
     }
     public native String saveProfile(String userName);
 }

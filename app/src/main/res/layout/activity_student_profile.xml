@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:contentDescription="Switch to editing mode"
         android:text="edit"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
     <Button
         android:id="@+id/saveProfile"
@@ -79,6 +79,15 @@
         android:text="save"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/SwitchToTutorButton"
+        android:layout_width="97dp"
+        android:layout_height="43dp"
+        android:background="@android:color/holo_orange_light"
+        android:text="@string/switch_to_tutor"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="@+id/EditButton"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
         android:id="@+id/classList"
