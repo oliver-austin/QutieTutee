@@ -11,9 +11,10 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     // Used to load the 'native-lib' library on application startup.
-    //static {
+    static {
        // System.loadLibrary("native-lib");
-//    }
+        System.loadLibrary("sign-in");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     }
     public void switchLandingActivity(View view) {
         Intent intent = new Intent(this, LandingActivity.class);
+        User user = new User();
+        intent.putExtra("testClass", user);
         startActivity(intent);
     }
 

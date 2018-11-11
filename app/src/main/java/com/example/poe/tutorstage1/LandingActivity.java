@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class LandingActivity extends AppCompatActivity {
 
@@ -24,6 +25,9 @@ public class LandingActivity extends AppCompatActivity {
                 switchTutorActivity(view);
             }
         });
+        User user = (User) getIntent().getSerializableExtra("testClass");
+        Toast.makeText(LandingActivity.this, user.getMessage(),
+                Toast.LENGTH_LONG).show();
         // Example of a call to a native method
 //        TextView tv = (TextView) findViewById(R.id.sample_text);
 //        tv.setText(stringFromJNI());
