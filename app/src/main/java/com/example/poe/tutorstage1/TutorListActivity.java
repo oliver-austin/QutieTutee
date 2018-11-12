@@ -32,7 +32,7 @@ public class TutorListActivity extends AppCompatActivity {
         listItems = new ArrayList<>();
 
         for(int i= 0; i<10; i++){
-            tutorListItem aTutor = new tutorListItem("heading" + (i+1), "Filler info");
+            tutorListItem aTutor = new tutorListItem("Name" + (i+1), "Price");
             listItems.add(aTutor);
         }
 
