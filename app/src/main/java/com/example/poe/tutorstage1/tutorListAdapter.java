@@ -35,6 +35,7 @@ public class tutorListAdapter extends RecyclerView.Adapter<tutorListAdapter.View
 
         holder.listItemHead.setText(listItem.getHead());
         holder.tutorDescription.setText(listItem.getDesc());
+        holder.tutorRate.setText(listItem.getRate());
     }
 
     @Override
@@ -46,6 +47,7 @@ public class tutorListAdapter extends RecyclerView.Adapter<tutorListAdapter.View
 
         public TextView listItemHead;
         public TextView tutorDescription;
+        public TextView tutorRate;
 
 
 
@@ -54,6 +56,7 @@ public class tutorListAdapter extends RecyclerView.Adapter<tutorListAdapter.View
 
             listItemHead = (TextView) itemView.findViewById(R.id.listItemHead);
             tutorDescription= (TextView) itemView.findViewById(R.id.tutorDescription);
+            tutorRate = (TextView) itemView.findViewById(R.id.tutorRate);
         }
     }
 
