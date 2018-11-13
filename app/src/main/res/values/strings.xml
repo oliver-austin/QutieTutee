@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">tutorStage1</string>
+
+    //Sign in Page
     <string name="email_message">Enter Your Email</string>
     <string name="password_message">Password</string>
     <string name="button_signup">Sign Up</string>
     <string name="button_signin">Sign In</string>
+
+    //Profile Page
+    <string name="message_userName">Jim Bob Joe</string>
+
+    //List Page
     <string name="title_activity_tutor_list">tutorList</string>
     <string name = "name">Name:</string>
     <string name = "courses">Courses I can teach:</string>
