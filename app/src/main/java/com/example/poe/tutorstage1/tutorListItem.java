@@ -11,6 +11,7 @@ public class tutorListItem {
         this.desc = desc;
         this.rate = rate;
         this.isActive = isActive;
+
     }
 
     public String getRate() {
