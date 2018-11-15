@@ -16,6 +16,16 @@ public class tutorListAdapter extends RecyclerView.Adapter<tutorListAdapter.View
     private List<tutorListItem> listItems;
     private Context context;
 
+    private OnItemClickListen mListener;
+
+    public interface OnItemClickListen{
+        void OnItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListen listener){
+        mListener = listener;
+    }
+
     public tutorListAdapter(List<tutorListItem> listItems, Context context) {
         this.listItems = listItems;
         this.context = context;
@@ -57,6 +67,18 @@ public class tutorListAdapter extends RecyclerView.Adapter<tutorListAdapter.View
             listItemHead = (TextView) itemView.findViewById(R.id.listItemHead);
             tutorDescription= (TextView) itemView.findViewById(R.id.tutorDescription);
             tutorRate = (TextView) itemView.findViewById(R.id.tutorRate);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mListener != null){
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            mListener.OnItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 
