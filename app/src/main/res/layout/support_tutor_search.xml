@@ -16,6 +16,7 @@
 
         <!--{R.java.tutorListItem.isActive ? @drawable/card_colour_active : drawable/card_colour_inactive} -->
         <FrameLayout
+            android:id="@+id/statusBar"
             android:background="@drawable/card_colour_active"
             android:layout_width="4dp"
             android:layout_height="match_parent"/>
