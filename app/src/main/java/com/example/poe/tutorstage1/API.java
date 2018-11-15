@@ -17,13 +17,13 @@ public interface API {
     @GET("user/tutors")
     Call<List<User>> getTutors();
 
-    @GET("user/{email}/{tutor}")
+    @GET("user/{email}/{tutor}/get")
     Call<User> getUser(@Path("email") String email, @Path("tutor") boolean tutor);
 
-    @POST("user")
+    @POST("user/new")
     Call<User> newUser(@Body User newUser);
 
-    @PUT("user/{email}/{tutor}")
+    @PUT("user/{email}/{tutor}/update")
     Call<User> updateUser(@Path("email") String email, @Path("tutor") boolean tutor, @Body User user);
 
 }
