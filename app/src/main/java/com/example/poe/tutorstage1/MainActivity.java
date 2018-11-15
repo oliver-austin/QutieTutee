@@ -32,12 +32,12 @@ public class MainActivity extends AppCompatActivity {
 //        tv.setText(stringFromJNI());
     }
     public void switchLandingActivity(View view) {
-        APIController controller = new APIController();
-        controller.start("tutors");
-        /*Intent intent = new Intent(this, LandingActivity.class);
+        //APIController controller = new APIController();
+        //controller.start("tutors");
+        Intent intent = new Intent(this, LandingActivity.class);
         User user = new User();
         intent.putExtra("testClass", user);
-        startActivity(intent);*/
+        startActivity(intent);
     }
 
     /**
