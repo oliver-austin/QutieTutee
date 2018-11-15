@@ -30,8 +30,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     }
     public void switchLandingActivity(View view) {
-        //APIController controller = new APIController();
-        //controller.start("tutors");
+        APIController controller = new APIController();
+        User send = new User();
+        controller.start(0, send);
         Intent intent = new Intent(this, LandingActivity.class);
         User user = new User();
         replaceNullFields(user);
