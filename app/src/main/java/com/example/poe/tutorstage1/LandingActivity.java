@@ -8,6 +8,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class LandingActivity extends AppCompatActivity {
+    static {
+        System.loadLibrary("landing-activity");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +28,9 @@ public class LandingActivity extends AppCompatActivity {
                 switchTutorActivity(view);
             }
         });
-        User user = (User) getIntent().getSerializableExtra("testClass");
-        Toast.makeText(LandingActivity.this, user.getMessage(),
+        long ptr = (long)getIntent().getSerializableExtra("testClass");
+        String name = getName(ptr);
+        Toast.makeText(LandingActivity.this, name,
                 Toast.LENGTH_LONG).show();
         // Example of a call to a native method
 //        TextView tv = (TextView) findViewById(R.id.sample_text);
@@ -40,5 +44,7 @@ public class LandingActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TutorProfileActivity.class);
         startActivity(intent);
     }
+
+    public native String getName(long ptr);
 }
 
