@@ -16,4 +16,3 @@ Java_com_example_poe_tutorstage1_SignInActivity(JNIEnv *env, jobject, jstring em
     return env->NewStringUTF(emailAddressJava.c_str());
 }
 }
-

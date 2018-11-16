@@ -12,7 +12,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Used to load the 'native-lib' library on application startup.
     static {
-       // System.loadLibrary("native-lib");
         System.loadLibrary("sign-in");
     }
 
@@ -32,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 //        tv.setText(stringFromJNI());
     }
     public void switchLandingActivity(View view) {
+        //APIController controller = new APIController();
+        //controller.start("tutors");
         Intent intent = new Intent(this, LandingActivity.class);
         User user = new User();
         intent.putExtra("testClass", user);
