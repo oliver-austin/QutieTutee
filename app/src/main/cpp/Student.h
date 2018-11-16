@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "Person.h"
+#include "User.h"
 #include "Tutor.h"
 
-class Student : public Person{
+class Student : public User{
 public:
     void rateTutor(Tutor tutor, int rating);
 private:

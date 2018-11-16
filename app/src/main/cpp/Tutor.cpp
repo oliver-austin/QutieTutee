@@ -6,7 +6,7 @@
 
 //Constructors
 Tutor::Tutor(std::string email){
-    Person::Person(email);
+    User::User(email);
 }
 
 //Accessors
