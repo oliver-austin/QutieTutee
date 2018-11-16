@@ -14,12 +14,13 @@ User::User(std::string email){
 }
 
 User::User(std::string name, std::string email, std::string pwrd, std::string s_course, std::string
-            t_course, std::string location){
+            t_course, int tutor){
     setName(name);
     setEmail(email);
     setPwrd(pwrd);
     setTCourse(t_course);
     setSCourse(s_course);
+    setTutor(tutor);
 }
 
 //Accessors
@@ -39,20 +40,17 @@ std::string User::getPwrd()  {
     return clone(pwrd);
 }
 
-std::string User::getUID(){
-    return clone(user_id);
-}
-
-std::string User::getLocation() {
-    return clone(location);
-}
-
 std::string User::getTCourse() {
     return clone(t_course);
 }
 
 std::string User::getSCourse(){
     return clone(s_course);
+}
+
+int User::getTutor() {
+    int copy = tutor;
+    return copy;
 }
 //Mutators
 void User::setCourses(std::string courseCode){//entering courses one at a time
@@ -71,21 +69,16 @@ void User::setPwrd(std::string pwrd) {
     this->pwrd = pwrd;
 }
 
-void User::setUID(std::string UID) {
-    user_id = UID;
-}
-
-
-void User::setLocation(std::string location) {
-    this->location = location;
-}
-
 void User::setTCourse(std::string t_course) {
     this->t_course = t_course;
 }
 
 void User::setSCourse(std::string s_course) {
     this->s_course = s_course;
+}
+
+void User::setTutor(int tutor) {
+    this->tutor = tutor;
 }
 
 //Clones

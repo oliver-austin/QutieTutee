@@ -29,9 +29,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             }
         });
 
-        // Example of a call to a native method
-//        TextView tv = (TextView) findViewById(R.id.sample_text);
-//        tv.setText(stringFromJNI());
     }
     public void switchLandingActivity(View view) {
         //APIController controller = new APIController();
@@ -40,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         User user = new User();
         replaceNullFields(user);
         long ptr = newUser(user);
-        intent.putExtra("testClass", ptr);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
 

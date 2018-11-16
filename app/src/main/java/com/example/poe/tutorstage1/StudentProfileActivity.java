@@ -14,7 +14,7 @@ public class StudentProfileActivity extends AppCompatActivity {
         System.loadLibrary("student-profile");
     }
     private EditText mName;
-    private EditText mClass;
+    private EditText mCourse;
     private Button mSave;
     private Button mEdit;
     private Button mSwitchToTutorActivity;
@@ -22,21 +22,44 @@ public class StudentProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_profile);
-
+        long ptr = (long)getIntent().getSerializableExtra("userPointer");
         mName = findViewById(R.id.userName);
-        mClass = findViewById(R.id.classList);
+        mCourse = findViewById(R.id.classList);
+
+        // set initial entries of profile
+        String name = getUserName(ptr);
+        String course = getStudentCourse(ptr);
+        if(name != ""){
+            mName.setText(name);
+        }
+        if(name != ""){
+            mCourse.setText(course);
+        }
+
 
         mName.setFocusableInTouchMode(false);
-        mClass.setFocusableInTouchMode(false);
+        mCourse.setFocusableInTouchMode(false);
 
         mSave = findViewById(R.id.saveProfile);
         mSave.setVisibility(View.INVISIBLE);
         mSave.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
+                //create new user
+                User user = new User();
+                //set user fields
                 String userName =  mName.getText().toString();
-                String newUserName = saveProfile(userName);
-                Toast.makeText(StudentProfileActivity.this, newUserName,
-                        Toast.LENGTH_LONG).show();
+                String studentCourse = mCourse.getText().toString();
+                user.setName(userName);
+                user.setS_courses(studentCourse);
+                user.setEmail(getEmail(ptr));
+                user.setPwrd(getPassword(ptr));
+                user.setT_courses(getTutorCourse(ptr));
+                user.setTutor(getTutor(ptr));
+
+                // call api to update user
+                //APIController controller = new APIController();
+                //        controller.start(4, user);
+                saveProfile(ptr, userName, studentCourse);
                 toggleSaveProfile();
             }
         });
@@ -67,24 +90,30 @@ public class StudentProfileActivity extends AppCompatActivity {
     }
     public void toggleEditProfile(){
             mName.setFocusableInTouchMode(true);
-            mClass.setFocusableInTouchMode(true);
+            mCourse.setFocusableInTouchMode(true);
             mSave.setVisibility(View.VISIBLE);
             mEdit.setVisibility(View.INVISIBLE);
             mSwitchToTutorActivity.setVisibility(View.INVISIBLE);
     }
     public void toggleSaveProfile(){
         mName.setFocusableInTouchMode(false);
-        mClass.setFocusableInTouchMode(false);
+        mCourse.setFocusableInTouchMode(false);
         mSave.setVisibility(View.INVISIBLE);
         mEdit.setVisibility(View.VISIBLE);
         mSwitchToTutorActivity.setVisibility(View.VISIBLE);
         mName.clearFocus();
-        mClass.clearFocus();
+        mCourse.clearFocus();
 
     }
     public void switchTutorProfileActivity(View view) {
         Intent intent = new Intent(this, TutorProfileActivity.class);
         startActivity(intent);
     }
-    public native String saveProfile(String userName);
+    public native void saveProfile(long ptr, String name, String course);
+    public native String getUserName(long ptr);
+    public native String getStudentCourse(long ptr);
+    public native String getEmail(long ptr);
+    public native String getPassword(long ptr);
+    public native String getTutorCourse(long ptr);
+    public native int getTutor(long ptr);
 }
