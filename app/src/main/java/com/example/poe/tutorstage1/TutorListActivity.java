@@ -53,7 +53,7 @@ public class TutorListActivity extends AppCompatActivity {
                 layoutInflater =(LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                 ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.support_tutor_search_popup, null);
 
-                popupWindow = new PopupWindow(container, 800, 800, true);
+                popupWindow = new PopupWindow(container, 800, 850, true);
                 popupWindow.showAtLocation(recyclerView, Gravity.CENTER, 0, 0);
 
 

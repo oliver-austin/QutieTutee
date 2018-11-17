@@ -27,7 +27,6 @@ public class User implements Serializable {
     int tutor;
     double rate;
 
-
     public String getEmail() {
         return email;
     }
