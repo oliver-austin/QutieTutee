@@ -29,10 +29,10 @@ public class StudentProfileActivity extends AppCompatActivity {
         // set initial entries of profile
         String name = getUserName(ptr);
         String course = getStudentCourse(ptr);
-        if(name != ""){
+        if(!name.equals("")){
             mName.setText(name);
         }
-        if(name != ""){
+        if(!course.equals("")){
             mCourse.setText(course);
         }
 
@@ -55,6 +55,8 @@ public class StudentProfileActivity extends AppCompatActivity {
                 user.setPwrd(getPassword(ptr));
                 user.setT_courses(getTutorCourse(ptr));
                 user.setTutor(getTutor(ptr));
+                user.setBio(getBio(ptr));
+                user.setRate(getRate(ptr));
 
                 // call api to update user
                 //APIController controller = new APIController();
@@ -115,5 +117,7 @@ public class StudentProfileActivity extends AppCompatActivity {
     public native String getEmail(long ptr);
     public native String getPassword(long ptr);
     public native String getTutorCourse(long ptr);
+    public native String getBio(long ptr);
     public native int getTutor(long ptr);
+    public native double getRate(long ptr);
 }

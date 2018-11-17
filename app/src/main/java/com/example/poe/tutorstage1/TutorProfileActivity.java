@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class TutorProfileActivity extends AppCompatActivity {
     static {
-        System.loadLibrary("tutor-profile");
+        System.loadLibrary("native-lib");
     }
     private EditText mName;
-    private EditText mClassTeach;
+    private EditText mCourse;
     private EditText mContact;
     private EditText mRate;
     private EditText mBio;
@@ -25,17 +24,42 @@ public class TutorProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_profile);
+        long ptr = (long)getIntent().getSerializableExtra("userPointer");
 
         mName = findViewById(R.id.NameTextBox);
-        mClassTeach = findViewById(R.id.CoursesTextBox);
+        mCourse = findViewById(R.id.CoursesTextBox);
         mContact = findViewById(R.id.ContactInfoTextBox);
         mRate = findViewById(R.id.RateTextBox);
         mBio = findViewById(R.id.BioTextBox);
         mSwitchToStudentActivity = findViewById(R.id.SwitchToStudentButton);
 
+        // set initial entries of profile
+        String name = getUserName(ptr);
+        String course = getTutorCourse(ptr);
+        String contact = getContact(ptr);
+        String bio = getBio(ptr);
+        double rate = getRate(ptr);
+
+        if(!name.equals("")){
+            mName.setText(name);
+        }
+        if(!course.equals("")){
+            mCourse.setText(course);
+        }
+        if(!contact.equals("")){
+            mContact.setText(contact);
+        }
+        if(!bio.equals("")){
+            mBio.setText(bio);
+        }
+        if(rate != 0){
+            String stringRate = Double.toString(rate);
+            mRate.setText(stringRate);
+        }
+
 
         mName.setFocusableInTouchMode(false);
-        mClassTeach.setFocusableInTouchMode(false);
+        mCourse.setFocusableInTouchMode(false);
         mContact.setFocusableInTouchMode(false);
         mRate.setFocusableInTouchMode(false);
         mBio.setFocusableInTouchMode(false);
@@ -45,27 +69,37 @@ public class TutorProfileActivity extends AppCompatActivity {
         mSave.setOnClickListener(new View.OnClickListener(){
 
             public void onClick(View view){
+//create new user
+                User user = new User();
+                //set user fields
                 String userName =  mName.getText().toString();
-                String userClassTeach =  mClassTeach.getText().toString();
-                String userContact =  mContact.getText().toString();
-                String userRate =  mRate.getText().toString();
-                String userBio =  mBio.getText().toString();
+                String tutorCourse = mCourse.getText().toString();
+                String bio = mBio.getText().toString();
+                String contact = mContact.getText().toString();
+                String rateString = mRate.getText().toString();
+                Double rate;
+                if(rateString.isEmpty()){
+                    rate = 0.0;
+                }
+                else{
+                    rate = Double.parseDouble(rateString);
+                }
 
-                String newUserInfo = saveProfile(userName, userClassTeach, userContact, userRate, userBio);
-            /*
-                Toast.makeText(TutorProfileActivity.this, newUserName,
-                        Toast.LENGTH_LONG).show();
-                Toast.makeText(TutorProfileActivity.this, newuserClassTeach,
-                        Toast.LENGTH_LONG).show();
-                Toast.makeText(TutorProfileActivity.this, newuserContact,
-                        Toast.LENGTH_LONG).show();
-                Toast.makeText(TutorProfileActivity.this, newuserRate,
-                        Toast.LENGTH_LONG).show();
-                Toast.makeText(TutorProfileActivity.this, newuserBio,
-                        Toast.LENGTH_LONG).show();
-              */
+                user.setName(userName);
+                user.setS_courses(getStudentCourse(ptr));
+                user.setContact(contact);
+                user.setEmail(getEmail(ptr));
+                user.setPwrd(getPassword(ptr));
+                user.setT_courses(tutorCourse);
+                user.setTutor(getTutor(ptr));
+                user.setBio(bio);
+                user.setRate(rate);
+
+                // call api to update user
+                //APIController controller = new APIController();
+                //        controller.start(4, user);
+                saveProfile(ptr, userName, tutorCourse, bio, contact, rate);
                 toggleSaveProfile();
-
 
             }
         });
@@ -94,7 +128,7 @@ public class TutorProfileActivity extends AppCompatActivity {
     }
     public void toggleEditProfile(){
         mName.setFocusableInTouchMode(true);
-        mClassTeach.setFocusableInTouchMode(true);
+        mCourse.setFocusableInTouchMode(true);
         mContact.setFocusableInTouchMode(true);
         mRate.setFocusableInTouchMode(true);
         mBio.setFocusableInTouchMode(true);
@@ -106,7 +140,7 @@ public class TutorProfileActivity extends AppCompatActivity {
 
     public void toggleSaveProfile(){
         mName.setFocusableInTouchMode(false);
-        mClassTeach.setFocusableInTouchMode(false);
+        mCourse.setFocusableInTouchMode(false);
         mContact.setFocusableInTouchMode(false);
         mRate.setFocusableInTouchMode(false);
         mBio.setFocusableInTouchMode(false);
@@ -116,7 +150,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mSwitchToStudentActivity.setVisibility(View.VISIBLE);
 
         mName.clearFocus();
-        mClassTeach.clearFocus();
+        mCourse.clearFocus();
         mContact.clearFocus();
         mRate.clearFocus();
         mBio.clearFocus();
@@ -132,6 +166,14 @@ public class TutorProfileActivity extends AppCompatActivity {
         Intent intent = new Intent(this, StudentProfileActivity.class);
         startActivity(intent);
     }
-    public native String saveProfile(String Variable,String userClassTeach, String userContact, String userRate, String userBio);
-
+    public native void saveProfile(long ptr, String name, String course, String bio, String contact, double rate);
+    public native String getUserName(long ptr);
+    public native String getStudentCourse(long ptr);
+    public native String getEmail(long ptr);
+    public native String getPassword(long ptr);
+    public native String getTutorCourse(long ptr);
+    public native String getBio(long ptr);
+    public native String getContact(long ptr);
+    public native int getTutor(long ptr);
+    public native double getRate(long ptr);
 }
