@@ -121,3 +121,4 @@ public class StudentProfileActivity extends AppCompatActivity {
     public native int getTutor(long ptr);
     public native double getRate(long ptr);
 }
+

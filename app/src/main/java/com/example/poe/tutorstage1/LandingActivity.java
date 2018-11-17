@@ -5,8 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class LandingActivity extends AppCompatActivity {
+    static {
+        System.loadLibrary("landing-activity");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,16 +28,21 @@ public class LandingActivity extends AppCompatActivity {
                 switchTutorActivity(view);
             }
         });
-        // Example of a call to a native method
-//        TextView tv = (TextView) findViewById(R.id.sample_text);
-//        tv.setText(stringFromJNI());
+
     }
     public void switchStudentActivity(View view) {
+        long ptr = (long)getIntent().getSerializableExtra("userPointer");
         Intent intent = new Intent(this, StudentProfileActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
     public void switchTutorActivity(View view) {
+        long ptr = (long)getIntent().getSerializableExtra("userPointer");
         Intent intent = new Intent(this, TutorProfileActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
+
+    public native String getName(long ptr);
 }
+
