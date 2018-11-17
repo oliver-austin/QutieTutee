@@ -13,7 +13,9 @@ public class TutorListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_search);
+        long ptr = (long)getIntent().getSerializableExtra("userPointer");
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
     }
+    public native String getStudentCourse(long ptr);
 }
