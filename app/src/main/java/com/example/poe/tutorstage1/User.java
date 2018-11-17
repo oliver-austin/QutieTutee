@@ -12,6 +12,9 @@ public class User implements Serializable {
         pwrd = null;
         location = null;
         tutor = 0;
+        bio = null;
+        contact = null;
+
     }
     private String message;
     String name;
@@ -20,7 +23,11 @@ public class User implements Serializable {
     String email;
     String location;
     String pwrd;
+    String bio;
+    String contact;
     int tutor;
+    double rate;
+
 
     public String getMessage() {
         return message;
@@ -65,7 +72,19 @@ public class User implements Serializable {
 
     public void setPwrd(String pwrd) { this.pwrd = pwrd;}
 
+    public String getBio() { return bio; }
+
+    public void setBio(String bio) { this.bio = bio; }
+
+    public String getContact() { return contact; }
+
+    public void setContact(String contact) { this.contact = contact; }
+
     public int getTutor() { return tutor; }
 
     public void setTutor(int tutor) { this.tutor = tutor; }
+
+    public double getRate() { return rate; }
+
+    public void setRate(double rate) { this.rate = rate; }
 }

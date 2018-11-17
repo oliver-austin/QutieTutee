@@ -60,6 +60,12 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         if(user.getPwrd() == null) {
             user.setPwrd("");
         }
+        if(user.getBio() == null) {
+            user.setBio("");
+        }
+        if(user.getContact() == null) {
+            user.setContact("");
+        }
     }
 
     /**

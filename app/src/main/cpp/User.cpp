@@ -14,13 +14,16 @@ User::User(std::string email){
 }
 
 User::User(std::string name, std::string email, std::string pwrd, std::string s_course, std::string
-            t_course, int tutor){
+            t_course, std::string contact, int tutor, std::string bio, double rate){
     setName(name);
     setEmail(email);
     setPwrd(pwrd);
     setTCourse(t_course);
     setSCourse(s_course);
+    setContact(contact);
     setTutor(tutor);
+    setBio(bio);
+    setRate(rate);
 }
 
 //Accessors
@@ -48,10 +51,24 @@ std::string User::getSCourse(){
     return clone(s_course);
 }
 
+std::string User::getBio() {
+    return clone(bio);
+}
+
+std::string User::getContact() {
+    return clone(contact);
+}
+
 int User::getTutor() {
     int copy = tutor;
     return copy;
 }
+
+double User::getRate() {
+    double copy = rate;
+    return copy;
+}
+
 //Mutators
 void User::setCourses(std::string courseCode){//entering courses one at a time
     courses.push_back(courseCode);
@@ -77,8 +94,20 @@ void User::setSCourse(std::string s_course) {
     this->s_course = s_course;
 }
 
+void User::setContact(std::string contact){
+    this->contact = contact;
+}
+
 void User::setTutor(int tutor) {
     this->tutor = tutor;
+}
+
+void User::setBio(std::string bio) {
+    this->bio = bio;
+}
+
+void User::setRate(double rate) {
+    this->rate = rate;
 }
 
 //Clones
