@@ -58,14 +58,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/EditTutorProfile"
-        android:layout_width="98dp"
-        android:layout_height="47dp"
-        android:background="@android:color/holo_orange_light"
-        android:text="Edit Profile"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
 </android.support.constraint.ConstraintLayout>

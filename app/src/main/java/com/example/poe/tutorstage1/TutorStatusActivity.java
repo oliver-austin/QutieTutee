@@ -8,20 +8,23 @@ import android.widget.Button;
 import android.widget.Toast;
 
 public class TutorStatusActivity extends AppCompatActivity {
+    static {
+        System.loadLibrary("native-lib");
+    }
     private Button mActive;
     private Button mInactive;
     private Button mStatusSet;
-    private Button mSwitchToTutorActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_status);
+        long ptr = (long)getIntent().getSerializableExtra("userPointer");
 
         mActive = findViewById(R.id.buttonActive);
         mActive.setVisibility(View.INVISIBLE);
         mActive.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                toggleActive();
+                toggleActive(ptr);
             }
 
         });
@@ -29,55 +32,46 @@ public class TutorStatusActivity extends AppCompatActivity {
         mInactive = findViewById(R.id.buttonInactive);
         mInactive.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                toggleInactive();
+                toggleInactive(ptr);
             }
 
         });
 
-        Button mTutorActivity = (Button)findViewById(R.id.EditTutorProfile);
-        mTutorActivity.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                switchTutorProfileActivity(view);
-            }
-        });
 
     }
-    public void toggleActive(){
-
-        mActive.setVisibility(View.VISIBLE);
-        mInactive.setVisibility(View.INVISIBLE);
-        mSwitchToTutorActivity.setVisibility(View.INVISIBLE);
-        mStatusSet = findViewById(R.id.setStatusBox);
-        mStatusSet.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-
-                String userStatus =  "Active";
-                //String newStatus = saveProfile(userStatus);
-                //Toast.makeText(TutorStatusActivity.this, newStatus,
-                  //      Toast.LENGTH_LONG).show();
-            }
-        });
-
-    }
-    public void toggleInactive(){
+    public void toggleActive(long ptr){
 
         mActive.setVisibility(View.INVISIBLE);
         mInactive.setVisibility(View.VISIBLE);
-        mSwitchToTutorActivity.setVisibility(View.VISIBLE);
         mStatusSet = findViewById(R.id.setStatusBox);
         mStatusSet.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                setInactive(ptr);
 
-                String userStatus =  "Inactive";
-                //String newStatus = saveProfile(userStatus);
-                //Toast.makeText(TutorStatusActivity.this, newStatus,
-                  //      Toast.LENGTH_LONG).show();
+                int test = getStatus(ptr);
+                Toast.makeText(TutorStatusActivity.this, Integer.toString(test),
+                        Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+    public void toggleInactive(long ptr){
+
+        mActive.setVisibility(View.VISIBLE);
+        mInactive.setVisibility(View.INVISIBLE);
+        mStatusSet = findViewById(R.id.setStatusBox);
+        mStatusSet.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                setActive(ptr);
+
+                int test = getStatus(ptr);
+                Toast.makeText(TutorStatusActivity.this, Integer.toString(test),
+                        Toast.LENGTH_LONG).show();
+
             }
         });
     }
-    public void switchTutorProfileActivity(View view) {
-        Intent intent = new Intent(this, TutorProfileActivity.class);
-        startActivity(intent);
-    }
-    //public native String saveProfile(String userStatus);
+    public native void setActive(long ptr);
+    public native void setInactive(long ptr);
+    public native int getStatus(long ptr);
 }

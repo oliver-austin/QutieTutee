@@ -42,5 +42,8 @@ Java_com_example_poe_tutorstage1_TutorProfileActivity_getContact(JNIEnv *env, jo
 JNIEXPORT jdouble JNICALL
 Java_com_example_poe_tutorstage1_TutorProfileActivity_getRate(JNIEnv *env, jobject,
                                                               jlong ptr);
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorProfileActivity_getStatus(JNIEnv *env, jobject,
+                                                                jlong ptr);
 }
 #endif //COLLINGWOODREPO_TUTOR_PROFILE_H
