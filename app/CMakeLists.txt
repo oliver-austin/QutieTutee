@@ -30,9 +30,9 @@ add_library (
 )
 
 add_library(
-            tutor-profile
-            SHARED
-            src/main/cpp/tutor-profile.cpp )
+        tutor-profile
+        SHARED
+        src/main/cpp/tutor-profile.cpp )
 
 
 
@@ -70,5 +70,3 @@ target_link_libraries( # Specifies the target library.
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib} )
-
->>>>>>> 65f278adf8c54a12b943bfce3d821091287c35b4
