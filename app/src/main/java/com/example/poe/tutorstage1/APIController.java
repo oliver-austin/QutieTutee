@@ -1,8 +1,11 @@
 package com.example.poe.tutorstage1;
 
+import android.support.annotation.Nullable;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.Serializable;
 import java.util.List;
 
 import retrofit2.Call;
@@ -11,11 +14,11 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class APIController {
+public class APIController implements Serializable {
 
     static final String BASE_URL = "http://collingwood.caslab.queensu.ca:5010/";
 
-    public void start(int select, User user) {
+    public void start(int select, User user, @Nullable APICallbacks callbacks) {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -29,7 +32,6 @@ public class APIController {
 
         API api = retrofit.create(API.class);
         switch(select){
-
             case 0:                 //Get all users
                 Call<List<User>> call = api.getUsers();
                 call.enqueue(new Callback<List<User>>() {
@@ -37,7 +39,8 @@ public class APIController {
                     public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                         if (response.isSuccessful()) {
                             List<User> userList = response.body();
-                            userList.forEach(user -> System.out.println(user.email));
+                            userList.forEach(user ->
+                            callbacks.onSuccess(user));
                         } else {
                             System.out.println(response.errorBody());
                         }

@@ -1,6 +1,7 @@
 package com.example.poe.tutorstage1;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,12 +33,31 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     public void switchLandingActivity(View view) {
         APIController controller = new APIController();
         User send = new User();
-        controller.start(0, send);
+        send.setEmail("test");
+        System.out.println("TEST");
         Intent intent = new Intent(this, LandingActivity.class);
         User user = new User();
         replaceNullFields(user);
         long ptr = newUser(user);
         intent.putExtra("userPointer", ptr);
+        intent.putExtra("test", "GETREKT");
+        User userTest;
+        System.out.print(intent.describeContents());
+        controller.start(0, send, new APICallbacks() {
+            @Override
+            public User onSuccess(@NonNull User user) {
+
+                System.out.println("MAINUSER:" + user);
+                System.out.println("MAINUSERNAME:" + user.getName());
+
+                intent.putExtra("MyClass", user.getName());
+                return user;
+            }
+
+            @Override
+            public void onError(@NonNull Throwable throwable) {
+            }
+        });
         startActivity(intent);
     }
 

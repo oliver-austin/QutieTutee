@@ -18,12 +18,12 @@ public interface API {
     Call<List<User>> getTutors();
 
     @GET("user/{email}/{tutor}/get")
-    Call<User> getUser(@Path("email") String email, @Path("tutor") boolean tutor);
+    Call<User> getUser(@Path("email") String email, @Path("tutor") int tutor);
 
     @POST("user/new")
     Call<User> newUser(@Body User newUser);
 
     @PUT("user/{email}/{tutor}/update")
-    Call<User> updateUser(@Path("email") String email, @Path("tutor") boolean tutor, @Body User user);
+    Call<User> updateUser(@Path("email") String email, @Path("tutor") int tutor, @Body User user);
 
 }
