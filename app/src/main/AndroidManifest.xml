@@ -25,7 +25,7 @@
         <activity android:name=".LandingActivity" />
         <activity android:name=".StudentProfileActivity" />
         <activity android:name=".TutorProfileActivity" />
-        <activity android:name=".TutorStatusActivity"></activity>
+        <activity android:name=".TutorStatusActivity" />
     </application>
 
 </manifest>

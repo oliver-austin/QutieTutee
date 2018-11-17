@@ -28,20 +28,18 @@ public class LandingActivity extends AppCompatActivity {
                 switchTutorActivity(view);
             }
         });
-        long ptr = (long)getIntent().getSerializableExtra("testClass");
-        String name = getName(ptr);
-        Toast.makeText(LandingActivity.this, name,
-                Toast.LENGTH_LONG).show();
-        // Example of a call to a native method
-//        TextView tv = (TextView) findViewById(R.id.sample_text);
-//        tv.setText(stringFromJNI());
+
     }
     public void switchStudentActivity(View view) {
+        long ptr = (long)getIntent().getSerializableExtra("userPointer");
         Intent intent = new Intent(this, StudentProfileActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
     public void switchTutorActivity(View view) {
+        long ptr = (long)getIntent().getSerializableExtra("userPointer");
         Intent intent = new Intent(this, TutorProfileActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
 

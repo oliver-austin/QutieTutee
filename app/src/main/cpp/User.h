@@ -13,7 +13,7 @@ public:
     User();
     User(std::string email);
     User(std::string name, std::string email, std::string pwrd, std::string s_course, std::string
-    t_course, std::string location);
+    t_course, int tutor);
 
 
     //Accesors
@@ -21,10 +21,9 @@ public:
     std::string getName();
     std::string getEmail();
     std::string getPwrd();//incorporates no encryption
-    std::string getUID();
-    std::string getLocation();
     std::string getTCourse();
     std::string getSCourse();
+    int getTutor();
 
     //Mutators
     void setCourses(std::string courseCode);//used to enter one by one
@@ -35,6 +34,7 @@ public:
     void setLocation(std::string location);
     void setTCourse(std::string t_course);
     void setSCourse(std::string s_course);
+    void setTutor(int tutor);
 
     //Clones
     std::string clone(std::string);
@@ -46,10 +46,9 @@ private:
     std::string name;
     std::string email;
     std::string pwrd;//incorporates no encryption
-    std::string user_id;
-    std::string location;
     std::string s_course;
     std::string t_course;
+    int tutor;
 
 };
 

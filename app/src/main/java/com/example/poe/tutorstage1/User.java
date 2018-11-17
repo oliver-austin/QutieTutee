@@ -10,6 +10,7 @@ public class User implements Serializable {
         email = null;
         pwrd = null;
         location = null;
+        tutor = 0;
     }
     private String message;
     String name;
@@ -18,6 +19,7 @@ public class User implements Serializable {
     String email;
     String location;
     String pwrd;
+    int tutor;
 
     public String getEmail() {
         return email;
@@ -57,4 +59,8 @@ public class User implements Serializable {
     public String getPwrd() { return pwrd; }
 
     public void setPwrd(String pwrd) { this.pwrd = pwrd;}
+
+    public int getTutor() { return tutor; }
+
+    public void setTutor(int tutor) { this.tutor = tutor; }
 }
