@@ -6,20 +6,60 @@
     android:layout_height="match_parent"
     tools:context=".StudentProfileActivity">
 
-
-
+    //Navigate to Tutor List page
 
     <Button
         android:id="@+id/tutorListActivityButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tutor List"
-        tools:layout_editor_absoluteX="106dp"
-        tools:layout_editor_absoluteY="428dp"
+        android:layout_marginBottom="40dp"
+        android:text="Search Tutors"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:contentDescription="Your Profile Picture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userType"
+        tools:srcCompat="@tools:sample/avatars[3]" />
+
+    <TextView
+        android:id="@+id/userType"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:contentDescription="You are in Student Mode"
+        android:text="Student"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="36sp"
+        app:fontFamily="cursive"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:contentDescription="Your Name"
+        android:hint="Name"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <Button
         android:id="@+id/enterEditMode"
@@ -27,11 +67,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="Switch to editing mode"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/button_editMode" />
+        android:text="edit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/saveProfile"
+        style="@style/Widget.AppCompat.Button.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Switch to editing mode"
+        android:text="save"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <Button
+        android:id="@+id/SwitchToTutorButton"
+        android:layout_width="97dp"
+        android:layout_height="43dp"
+        android:background="@android:color/holo_orange_light"
+        android:text="@string/switch_to_tutor"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="@+id/EditButton"
+        app:layout_constraintEnd_toEndOf="parent" />
 
+    <EditText
+        android:id="@+id/classList"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_marginTop="40dp"
+        android:hint="Course Code"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        app:fontFamily="sans-serif"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userName" />
 
 
 

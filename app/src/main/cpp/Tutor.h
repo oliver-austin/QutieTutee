@@ -2,9 +2,9 @@
 // Created by Poe on 10/28/2018.
 //
 
-#include "Person.h"
+#include "User.h"
 
-class Tutor: public Person {
+class Tutor: public User {
 public:
     //Constructors
     Tutor(std::string email);
