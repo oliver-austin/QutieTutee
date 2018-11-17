@@ -14,7 +14,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
     // Used to load the 'native-lib' library on application startup.
     static {
-       // System.loadLibrary("native-lib");
         System.loadLibrary("sign-in");
     }
 
