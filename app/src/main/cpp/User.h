@@ -13,7 +13,7 @@ public:
     User();
     User(std::string email);
     User(std::string name, std::string email, std::string pwrd, std::string s_course, std::string
-    t_course, std::string contact, int tutor, std::string bio, double rate);
+    t_course, std::string contact, int tutor, std::string bio, double rate, int status);
 
 
     //Accesors
@@ -27,6 +27,7 @@ public:
     std::string getContact();
     int getTutor();
     double getRate();
+    int getStatus();
 
     //Mutators
     void setCourses(std::string courseCode);//used to enter one by one
@@ -39,6 +40,7 @@ public:
     void setTutor(int tutor);
     void setBio(std::string bio);
     void setRate(double rate);
+    void setStatus(int status);
 
     //Clones
     std::string clone(std::string);
@@ -56,5 +58,6 @@ private:
     std::string contact;
     int tutor;
     double rate;
+    int status;
 };
 

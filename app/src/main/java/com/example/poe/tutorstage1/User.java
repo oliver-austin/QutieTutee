@@ -13,6 +13,7 @@ public class User implements Serializable {
         tutor = 0;
         bio = null;
         contact = null;
+        status = 0;
 
     }
     private String message;
@@ -26,6 +27,7 @@ public class User implements Serializable {
     String contact;
     int tutor;
     double rate;
+    int status;
 
 
     public String getEmail() {
@@ -82,4 +84,8 @@ public class User implements Serializable {
     public double getRate() { return rate; }
 
     public void setRate(double rate) { this.rate = rate; }
+
+    public int getStatus() { return status; }
+
+    public void setStatus(int status) { this.status = status; }
 }

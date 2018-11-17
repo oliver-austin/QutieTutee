@@ -33,6 +33,9 @@ Java_com_example_poe_tutorstage1_StudentProfileActivity_getContact(JNIEnv *env, 
 JNIEXPORT jint JNICALL
         Java_com_example_poe_tutorstage1_StudentProfileActivity_getTutor(JNIEnv *env, jobject ,
                                                                          jlong ptr);
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_StudentProfileActivity_getStatus(JNIEnv *env, jobject,
+                                                                jlong ptr);
 
 };
 #endif TUTORSTAGE1_STUDENTPROFILE_H

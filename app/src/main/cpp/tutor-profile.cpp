@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <string>
 #include "User.cpp"
+#include "User.h"
 
 extern "C" {
 JNIEXPORT void JNICALL
@@ -101,5 +102,12 @@ Java_com_example_poe_tutorstage1_TutorProfileActivity_getRate(JNIEnv *env, jobje
     User *obj = (User *) ptr;
     double rate = obj->getRate();
     return rate;
+}
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorProfileActivity_getStatus(JNIEnv *env, jobject,
+                                                               jlong ptr) {
+    User *obj = (User *) ptr;
+    int status = obj->getStatus();
+    return status;
 }
 }

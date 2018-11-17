@@ -38,6 +38,8 @@ Java_com_example_poe_tutorstage1_MainActivity_newUser(JNIEnv *env, jobject, jobj
     jint tutorJava = (jint)env->GetIntField(JavaUser, tutorId);
     jfieldID rateId = env->GetFieldID(user, "rate", "D");
     jdouble rateJava = (jdouble)env->GetDoubleField(JavaUser, rateId);
+    jfieldID statusId = env->GetFieldID(user, "status", "I");
+    jint statusJava = (jint)env->GetIntField(JavaUser, statusId);
 
     const char *cstrName = env->GetStringUTFChars(nameObjectJava, NULL);
     std::string nameStr = cstrName;
@@ -61,7 +63,7 @@ Java_com_example_poe_tutorstage1_MainActivity_newUser(JNIEnv *env, jobject, jobj
     std::string contactStr = cstrContact;
 
     return (long)(new User(nameStr, emailStr, pwrdStr, s_courseStr,
-                           t_courseStr, contactStr, tutorJava, bioStr, rateJava));
+                           t_courseStr, contactStr, tutorJava, bioStr, rateJava, statusJava));
     }
 }
 

@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 public class TutorProfileActivity extends AppCompatActivity {
     static {
-        System.loadLibrary("native-lib");
+        System.loadLibrary("tutor-profile");
     }
     private EditText mName;
     private EditText mCourse;
@@ -94,6 +94,7 @@ public class TutorProfileActivity extends AppCompatActivity {
                 user.setTutor(getTutor(ptr));
                 user.setBio(bio);
                 user.setRate(rate);
+                user.setStatus(getStatus(ptr));
 
                 // call api to update user
                 //APIController controller = new APIController();
@@ -107,7 +108,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         Button mSwitchToStudentActivity = (Button)findViewById(R.id.SwitchToStudentButton);
         mSwitchToStudentActivity.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                switchStudentProfileActivity(view);
+                switchStudentProfileActivity(view, ptr);
             }
         });
         mEdit = findViewById(R.id.enterEditMode);
@@ -120,7 +121,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mSetStatus = findViewById(R.id.SetStatusBox);
         mSetStatus.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                switchTutorStatusActivity(view);
+                switchTutorStatusActivity(view, ptr);
             }
 
         });
@@ -158,12 +159,14 @@ public class TutorProfileActivity extends AppCompatActivity {
 
 
     }
-    public void switchTutorStatusActivity(View view) {
+    public void switchTutorStatusActivity(View view, long ptr) {
         Intent intent = new Intent(this, TutorStatusActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
-    public void switchStudentProfileActivity(View view) {
+    public void switchStudentProfileActivity(View view, long ptr) {
         Intent intent = new Intent(this, StudentProfileActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
     public native void saveProfile(long ptr, String name, String course, String bio, String contact, double rate);
@@ -176,4 +179,5 @@ public class TutorProfileActivity extends AppCompatActivity {
     public native String getContact(long ptr);
     public native int getTutor(long ptr);
     public native double getRate(long ptr);
+    public native int getStatus(long ptr);
 }
