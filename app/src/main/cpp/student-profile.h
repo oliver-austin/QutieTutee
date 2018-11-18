@@ -39,6 +39,17 @@ JNIEXPORT jint JNICALL
 JNIEXPORT jint JNICALL
 Java_com_example_poe_tutorstage1_StudentProfileActivity_getStatus(JNIEnv *env, jobject,
                                                                 jlong ptr);
-
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_StudentProfileActivity_getAvailable(JNIEnv *env, jobject ,
+                                                                     jlong ptr);
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_StudentProfileActivity_getDuration(JNIEnv *env, jobject ,
+                                                                    jlong ptr);
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_StudentProfileActivity_getInSession(JNIEnv *env, jobject ,
+                                                                     jlong ptr);
+JNIEXPORT jdouble JNICALL
+Java_com_example_poe_tutorstage1_StudentProfileActivity_getStars(JNIEnv *env, jobject ,
+                                                                 jlong ptr);
 };
 #endif TUTORSTAGE1_STUDENTPROFILE_H

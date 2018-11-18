@@ -10,7 +10,7 @@ import android.widget.Button;
 import java.io.Serializable;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
-
+    User retrieveUser = new User();
     static {
         System.loadLibrary("sign-in");
     }
@@ -30,11 +30,11 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         APIController controller = new APIController();
 
         Intent intent = new Intent(this, LandingActivity.class);
-        User retrieveUser = new User();
-        retrieveUser.setEmail("email@gmail.com");
+
+        retrieveUser.setEmail("buddy@gmail.com");
         retrieveUser.setTutor(0);
         replaceNullFields(retrieveUser);
-        controller.start(2, retrieveUser, new APICallbacks() {
+        controller.start(3, retrieveUser, new APICallbacks() {
             @Override
             public void onSuccess(@NonNull User user) {
                 retrieveUser.setName(user.getName());
@@ -44,10 +44,14 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 retrieveUser.setBio(user.getBio());
                 retrieveUser.setRate(user.getRate());
                 retrieveUser.setTutor(user.getTutor());
-                retrieveUser.setPwrd(user.getPwrd());
+                retrieveUser.setPassword(user.getPassword());
                 retrieveUser.setS_courses(user.getS_courses());
                 retrieveUser.setStatus(user.getStatus());
                 retrieveUser.setEmail(user.getEmail());
+                retrieveUser.setAvailable(user.getAvailable());
+                retrieveUser.setDuration(user.getDuration());
+                retrieveUser.setIn_session(user.getIn_session());
+                retrieveUser.setStars(user.getStars());
             }
         });
         long ptr = newUser(retrieveUser);
@@ -71,8 +75,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         if(user.getLocation() == null) {
             user.setLocation("");
         }
-        if(user.getPwrd() == null) {
-            user.setPwrd("");
+        if(user.getPassword() == null) {
+            user.setPassword("");
         }
         if(user.getBio() == null) {
             user.setBio("");
