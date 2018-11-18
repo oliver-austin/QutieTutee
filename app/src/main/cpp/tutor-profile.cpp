@@ -121,4 +121,32 @@ Java_com_example_poe_tutorstage1_TutorProfileActivity_getStatus(JNIEnv *env, job
     int status = obj->getStatus();
     return status;
 }
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorProfileActivity_getAvailable(JNIEnv *env, jobject ,
+                                                                     jlong ptr) {
+    User *obj = (User *)ptr;
+    int available = obj->getAvailable();
+    return available;
+}
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorProfileActivity_getDuration(JNIEnv *env, jobject ,
+                                                                    jlong ptr) {
+    User *obj = (User *)ptr;
+    int duration = obj->getDuration();
+    return duration;
+}
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorProfileActivity_getInSession(JNIEnv *env, jobject ,
+                                                                     jlong ptr) {
+    User *obj = (User *)ptr;
+    int in_session = obj->getIn_session();
+    return in_session;
+}
+JNIEXPORT jdouble JNICALL
+Java_com_example_poe_tutorstage1_TutorProfileActivity_getStars(JNIEnv *env, jobject ,
+                                                                 jlong ptr) {
+    User *obj = (User *)ptr;
+    double stars = obj->getStars();
+    return stars;
+}
 }
