@@ -60,7 +60,7 @@ public class APIController implements Serializable {
                     public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                         if (response.isSuccessful()) {
                             List<User> userList = response.body();
-                            userList.forEach(user -> System.out.println(user.email));
+                            userList.forEach(user -> callbacks.onSuccess(user));
                         } else {
                             System.out.println(response.errorBody());
                         }
@@ -83,8 +83,6 @@ public class APIController implements Serializable {
                         if (response.isSuccessful()) {
                             User user = response.body();
                             callbacks.onSuccess(user);
-
-                            //System.out.println(user.email);
                         } else {
                             System.out.println(response.errorBody());
                         }
@@ -106,7 +104,6 @@ public class APIController implements Serializable {
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.isSuccessful()) {
                             int code = response.code();
-                            System.out.println(code);
                         } else {
                             System.out.println(response.errorBody());
                         }
@@ -125,8 +122,7 @@ public class APIController implements Serializable {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.isSuccessful()) {
-                            User updatedUser = response.body();
-                            System.out.println(updatedUser.email);
+                            System.out.println("Successful API call");
                         } else {
                             System.out.println(response.errorBody());
                         }
