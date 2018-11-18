@@ -68,7 +68,7 @@ Java_com_example_poe_tutorstage1_MainActivity_newUser(JNIEnv *env, jobject, jobj
     std::string locationStr = cstrLocation;
 
     return (long)(new User(nameStr, emailStr, pwrdStr, s_courseStr,
-                           t_courseStr, contactStr, tutorJava, bioStr, rateJava, statusJava, rateJava));
+                           t_courseStr, contactStr, tutorJava, bioStr, rateJava, statusJava, locationStr));
     }
 }
 

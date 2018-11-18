@@ -71,13 +71,13 @@ public class StudentProfileActivity extends AppCompatActivity {
         Button mTutorListActivity = (Button) findViewById(R.id.tutorListActivityButton);
         mTutorListActivity.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                switchTutorListActivity(view);
+                switchTutorListActivity(view, ptr);
             }
         });
         mSwitchToTutorActivity = findViewById(R.id.SwitchToTutorButton);
         mSwitchToTutorActivity.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                switchTutorProfileActivity(view);
+                switchTutorProfileActivity(view, ptr);
             }
         });
         mEdit = findViewById(R.id.enterEditMode);
@@ -88,8 +88,9 @@ public class StudentProfileActivity extends AppCompatActivity {
 
         });
     }
-    public void switchTutorListActivity(View view) {
+    public void switchTutorListActivity(View view, long ptr) {
         Intent intent = new Intent(this, TutorListActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
     public void toggleEditProfile(){
@@ -109,8 +110,9 @@ public class StudentProfileActivity extends AppCompatActivity {
         mCourse.clearFocus();
 
     }
-    public void switchTutorProfileActivity(View view) {
+    public void switchTutorProfileActivity(View view, long ptr) {
         Intent intent = new Intent(this, TutorProfileActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
     public native void saveProfile(long ptr, String name, String course);

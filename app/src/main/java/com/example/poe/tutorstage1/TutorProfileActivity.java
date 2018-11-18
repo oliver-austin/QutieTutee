@@ -40,7 +40,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         String course = getTutorCourse(ptr);
         String contact = getContact(ptr);
         String bio = getBio(ptr);
-        String location = getBio(ptr);
+        String location = getLocation(ptr);
         double rate = getRate(ptr);
 
         if(!name.equals("")){
@@ -55,6 +55,9 @@ public class TutorProfileActivity extends AppCompatActivity {
         if(!bio.equals("")){
             mBio.setText(bio);
         }
+        if(!location.equals("")){
+            mLocation.setText(location);
+        }
         if(rate != 0){
             String stringRate = Double.toString(rate);
             mRate.setText(stringRate);
@@ -66,6 +69,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mContact.setFocusableInTouchMode(false);
         mRate.setFocusableInTouchMode(false);
         mBio.setFocusableInTouchMode(false);
+        mLocation.setFocusableInTouchMode(false);
 
         mSave = findViewById(R.id.saveProfile);
         mSave.setVisibility(View.INVISIBLE);
@@ -79,6 +83,7 @@ public class TutorProfileActivity extends AppCompatActivity {
                 String tutorCourse = mCourse.getText().toString();
                 String bio = mBio.getText().toString();
                 String contact = mContact.getText().toString();
+                String location = mLocation.getText().toString();
                 String rateString = mRate.getText().toString();
                 Double rate;
                 if(rateString.isEmpty()){
@@ -97,7 +102,7 @@ public class TutorProfileActivity extends AppCompatActivity {
                 user.setTutor(getTutor(ptr));
                 user.setBio(bio);
                 user.setRate(rate);
-                user.setLocation(getLocation(ptr));
+                user.setLocation(location);
                 user.setStatus(getStatus(ptr));
 
                 // call api to update user
@@ -137,6 +142,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mContact.setFocusableInTouchMode(true);
         mRate.setFocusableInTouchMode(true);
         mBio.setFocusableInTouchMode(true);
+        mLocation.setFocusableInTouchMode(true);
 
         mSave.setVisibility(View.VISIBLE);
         mEdit.setVisibility(View.INVISIBLE);
@@ -149,6 +155,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mContact.setFocusableInTouchMode(false);
         mRate.setFocusableInTouchMode(false);
         mBio.setFocusableInTouchMode(false);
+        mLocation.setFocusableInTouchMode(false);
 
         mSave.setVisibility(View.INVISIBLE);
         mEdit.setVisibility(View.VISIBLE);
@@ -159,8 +166,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mContact.clearFocus();
         mRate.clearFocus();
         mBio.clearFocus();
-
-
+        mLocation.clearFocus();
 
     }
     public void switchTutorStatusActivity(View view, long ptr) {
