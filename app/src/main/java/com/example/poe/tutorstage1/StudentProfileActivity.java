@@ -57,6 +57,7 @@ public class StudentProfileActivity extends AppCompatActivity {
                 user.setTutor(getTutor(ptr));
                 user.setBio(getBio(ptr));
                 user.setRate(getRate(ptr));
+                user.setLocation(getLocation(ptr));
                 user.setStatus(getStatus(ptr));
 
                 // call api to update user
@@ -119,6 +120,7 @@ public class StudentProfileActivity extends AppCompatActivity {
     public native String getPassword(long ptr);
     public native String getTutorCourse(long ptr);
     public native String getBio(long ptr);
+    public native String getLocation(long ptr);
     public native int getTutor(long ptr);
     public native double getRate(long ptr);
     public native int getStatus(long ptr);

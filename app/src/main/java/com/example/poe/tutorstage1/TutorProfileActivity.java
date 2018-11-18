@@ -16,6 +16,7 @@ public class TutorProfileActivity extends AppCompatActivity {
     private EditText mContact;
     private EditText mRate;
     private EditText mBio;
+    private EditText mLocation;
     private Button mSave;
     private Button mEdit;
     private Button mSwitchToStudentActivity;
@@ -31,6 +32,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mContact = findViewById(R.id.ContactInfoTextBox);
         mRate = findViewById(R.id.RateTextBox);
         mBio = findViewById(R.id.BioTextBox);
+        mLocation = findViewById(R.id.LocationTextBox);
         mSwitchToStudentActivity = findViewById(R.id.SwitchToStudentButton);
 
         // set initial entries of profile
@@ -38,6 +40,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         String course = getTutorCourse(ptr);
         String contact = getContact(ptr);
         String bio = getBio(ptr);
+        String location = getBio(ptr);
         double rate = getRate(ptr);
 
         if(!name.equals("")){
@@ -94,12 +97,13 @@ public class TutorProfileActivity extends AppCompatActivity {
                 user.setTutor(getTutor(ptr));
                 user.setBio(bio);
                 user.setRate(rate);
+                user.setLocation(getLocation(ptr));
                 user.setStatus(getStatus(ptr));
 
                 // call api to update user
                 //APIController controller = new APIController();
                 //        controller.start(4, user);
-                saveProfile(ptr, userName, tutorCourse, bio, contact, rate);
+                saveProfile(ptr, userName, tutorCourse, bio, contact, rate, location);
                 toggleSaveProfile();
 
             }
@@ -169,7 +173,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
-    public native void saveProfile(long ptr, String name, String course, String bio, String contact, double rate);
+    public native void saveProfile(long ptr, String name, String course, String bio, String contact, double rate, String location);
     public native String getUserName(long ptr);
     public native String getStudentCourse(long ptr);
     public native String getEmail(long ptr);
@@ -177,6 +181,7 @@ public class TutorProfileActivity extends AppCompatActivity {
     public native String getTutorCourse(long ptr);
     public native String getBio(long ptr);
     public native String getContact(long ptr);
+    public native String getLocation(long ptr);
     public native int getTutor(long ptr);
     public native double getRate(long ptr);
     public native int getStatus(long ptr);
