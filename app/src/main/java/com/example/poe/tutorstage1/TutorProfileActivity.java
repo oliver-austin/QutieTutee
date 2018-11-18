@@ -1,6 +1,7 @@
 package com.example.poe.tutorstage1;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -106,8 +107,12 @@ public class TutorProfileActivity extends AppCompatActivity {
                 user.setStatus(getStatus(ptr));
 
                 // call api to update user
-                //APIController controller = new APIController();
-                //        controller.start(4, user);
+                APIController controller = new APIController();
+                controller.start(4, user, new APICallbacks() {
+                    @Override
+                    public void onSuccess(@NonNull User user) {
+                    }
+                });
                 saveProfile(ptr, userName, tutorCourse, bio, contact, rate, location);
                 toggleSaveProfile();
 
