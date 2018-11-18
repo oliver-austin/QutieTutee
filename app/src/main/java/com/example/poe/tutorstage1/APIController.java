@@ -82,7 +82,9 @@ public class APIController implements Serializable {
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.isSuccessful()) {
                             User user = response.body();
-                            System.out.println(user.email);
+                            callbacks.onSuccess(user);
+
+                            //System.out.println(user.email);
                         } else {
                             System.out.println(response.errorBody());
                         }

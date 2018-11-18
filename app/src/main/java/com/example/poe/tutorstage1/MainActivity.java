@@ -28,11 +28,11 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 switchLandingActivity(view);
             }
         });
-
     }
     public void switchLandingActivity(View view) {
         APIController controller = new APIController();
         User send = new User();
+        Intent intent = getIntent();
         send.setEmail("test");
         System.out.println("TEST");
         Intent intent = new Intent(this, LandingActivity.class);
@@ -43,15 +43,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         intent.putExtra("test", "GETREKT");
         User userTest;
         System.out.print(intent.describeContents());
-        controller.start(0, send, new APICallbacks() {
+        controller.start(2, send, new APICallbacks() {
             @Override
-            public User onSuccess(@NonNull User user) {
-
-                System.out.println("MAINUSER:" + user);
-                System.out.println("MAINUSERNAME:" + user.getName());
-
-                intent.putExtra("MyClass", user.getName());
-                return user;
+            public void onSuccess(@NonNull User user) {
+                send.setName(user.getName());
             }
 
             @Override
