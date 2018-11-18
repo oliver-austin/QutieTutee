@@ -7,5 +7,4 @@ import java.io.Serializable;
 
 public interface APICallbacks extends Serializable {
     void onSuccess(@NonNull User user);
-    void onError(@NonNull Throwable throwable);
 }

@@ -76,7 +76,7 @@ public class APIController implements Serializable {
 
 
             case 2:                 //Get specific user
-                Call<User> call3 = api.getUser(user.getEmail(), user.getUserType());
+                Call<User> call3 = api.getUser(user.getEmail(), user.getTutor());
                 call3.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
@@ -120,7 +120,7 @@ public class APIController implements Serializable {
                 });
 
             case 4:                 //Update specific user
-                Call<User> call5 = api.updateUser(user.getEmail(), user.getUserType(), user);
+                Call<User> call5 = api.updateUser(user.getEmail(), user.getTutor(), user);
                 call5.enqueue(new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
