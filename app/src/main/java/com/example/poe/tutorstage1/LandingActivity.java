@@ -16,6 +16,10 @@ public class LandingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
+
+        long ptr = (long)getIntent().getSerializableExtra("userPointer");
+        System.out.println("PTR: "+ getName(ptr));
+
         Button mStudentActivity = (Button)findViewById(R.id.studentActivityButton);
         mStudentActivity.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){

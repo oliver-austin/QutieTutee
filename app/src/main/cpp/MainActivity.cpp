@@ -24,9 +24,9 @@ Java_com_example_poe_tutorstage1_MainActivity_newUser(JNIEnv *env, jobject, jobj
     jstring nameObjectJava = (jstring)env->GetObjectField(JavaUser, nameId);
     jfieldID emailId = env->GetFieldID(user, "email", "Ljava/lang/String;");
     jstring emailObjectJava = (jstring)env->GetObjectField(JavaUser, emailId);
-    jfieldID pwrdId = env->GetFieldID(user, "pwrd", "Ljava/lang/String;");
+    jfieldID pwrdId = env->GetFieldID(user, "password", "Ljava/lang/String;");
     jstring pwrdObjectJava = (jstring)env->GetObjectField(JavaUser, pwrdId);
-    jfieldID sCourseId = env->GetFieldID(user, "s_course", "Ljava/lang/String;");
+    jfieldID sCourseId = env->GetFieldID(user, "s_courses", "Ljava/lang/String;");
     jstring sCourseObjectJava = (jstring)env->GetObjectField(JavaUser, sCourseId);
     jfieldID tCourseId = env->GetFieldID(user, "t_courses", "Ljava/lang/String;");
     jstring tCourseObjectJava = (jstring)env->GetObjectField(JavaUser, tCourseId);
@@ -42,6 +42,14 @@ Java_com_example_poe_tutorstage1_MainActivity_newUser(JNIEnv *env, jobject, jobj
     jdouble rateJava = (jdouble)env->GetDoubleField(JavaUser, rateId);
     jfieldID statusId = env->GetFieldID(user, "status", "I");
     jint statusJava = (jint)env->GetIntField(JavaUser, statusId);
+    jfieldID availableId = env->GetFieldID(user, "available", "I");
+    jint availableJava = (jint)env->GetIntField(JavaUser, availableId);
+    jfieldID durationId = env->GetFieldID(user, "duration", "I");
+    jint durationJava = (jint)env->GetIntField(JavaUser, durationId);
+    jfieldID in_sessionId = env->GetFieldID(user, "in_session", "I");
+    jint in_sessionJava = (jint)env->GetIntField(JavaUser, in_sessionId);
+    jfieldID starsId = env->GetFieldID(user, "stars", "D");
+    jdouble starsJava = (jdouble)env->GetDoubleField(JavaUser, starsId);
 
     const char *cstrName = env->GetStringUTFChars(nameObjectJava, NULL);
     std::string nameStr = cstrName;
@@ -68,7 +76,7 @@ Java_com_example_poe_tutorstage1_MainActivity_newUser(JNIEnv *env, jobject, jobj
     std::string locationStr = cstrLocation;
 
     return (long)(new User(nameStr, emailStr, pwrdStr, s_courseStr,
-                           t_courseStr, contactStr, tutorJava, bioStr, rateJava, statusJava, locationStr));
+                           t_courseStr, contactStr, tutorJava, bioStr, rateJava, statusJava, locationStr, availableJava, durationJava, in_sessionJava, starsJava));
     }
 }
 

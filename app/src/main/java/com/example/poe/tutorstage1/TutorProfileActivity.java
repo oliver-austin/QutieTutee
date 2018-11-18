@@ -1,6 +1,7 @@
 package com.example.poe.tutorstage1;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -97,20 +98,26 @@ public class TutorProfileActivity extends AppCompatActivity {
                 user.setS_courses(getStudentCourse(ptr));
                 user.setContact(contact);
                 user.setEmail(getEmail(ptr));
-                user.setPwrd(getPassword(ptr));
+                user.setPassword(getPassword(ptr));
                 user.setT_courses(tutorCourse);
                 user.setTutor(getTutor(ptr));
                 user.setBio(bio);
                 user.setRate(rate);
                 user.setLocation(location);
                 user.setStatus(getStatus(ptr));
+                user.setAvailable(getAvailable(ptr));
+                user.setDuration(getDuration(ptr));
+                user.setIn_session(getInSession(ptr));
+                user.setStars(getStars(ptr));
 
-                // call api to update user
-                //APIController controller = new APIController();
-                //        controller.start(4, user);
+                APIController controller = new APIController();
+                controller.start(4, user, new APICallbacks() {
+                    @Override
+                    public void onSuccess(@NonNull User user) {
+                    }
+                });
                 saveProfile(ptr, userName, tutorCourse, bio, contact, rate, location);
                 toggleSaveProfile();
-
             }
         });
 
@@ -191,4 +198,8 @@ public class TutorProfileActivity extends AppCompatActivity {
     public native int getTutor(long ptr);
     public native double getRate(long ptr);
     public native int getStatus(long ptr);
+    public native int getAvailable(long ptr);
+    public native int getDuration(long ptr);
+    public native int getInSession(long ptr);
+    public native double getStars(long ptr);
 }
