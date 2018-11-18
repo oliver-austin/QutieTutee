@@ -57,6 +57,7 @@ public class StudentProfileActivity extends AppCompatActivity {
                 user.setTutor(getTutor(ptr));
                 user.setBio(getBio(ptr));
                 user.setRate(getRate(ptr));
+                user.setLocation(getLocation(ptr));
                 user.setStatus(getStatus(ptr));
 
                 // call api to update user
@@ -70,13 +71,13 @@ public class StudentProfileActivity extends AppCompatActivity {
         Button mTutorListActivity = (Button) findViewById(R.id.tutorListActivityButton);
         mTutorListActivity.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                switchTutorListActivity(view);
+                switchTutorListActivity(view, ptr);
             }
         });
         mSwitchToTutorActivity = findViewById(R.id.SwitchToTutorButton);
         mSwitchToTutorActivity.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                switchTutorProfileActivity(view);
+                switchTutorProfileActivity(view, ptr);
             }
         });
         mEdit = findViewById(R.id.enterEditMode);
@@ -87,8 +88,9 @@ public class StudentProfileActivity extends AppCompatActivity {
 
         });
     }
-    public void switchTutorListActivity(View view) {
+    public void switchTutorListActivity(View view, long ptr) {
         Intent intent = new Intent(this, TutorListActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
     public void toggleEditProfile(){
@@ -108,8 +110,9 @@ public class StudentProfileActivity extends AppCompatActivity {
         mCourse.clearFocus();
 
     }
-    public void switchTutorProfileActivity(View view) {
+    public void switchTutorProfileActivity(View view, long ptr) {
         Intent intent = new Intent(this, TutorProfileActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
     public native void saveProfile(long ptr, String name, String course);
@@ -119,6 +122,7 @@ public class StudentProfileActivity extends AppCompatActivity {
     public native String getPassword(long ptr);
     public native String getTutorCourse(long ptr);
     public native String getBio(long ptr);
+    public native String getLocation(long ptr);
     public native int getTutor(long ptr);
     public native double getRate(long ptr);
     public native int getStatus(long ptr);

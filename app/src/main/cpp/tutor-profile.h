@@ -39,6 +39,9 @@ Java_com_example_poe_tutorstage1_TutorProfileActivity_getBio(JNIEnv *env, jobjec
 JNIEXPORT jstring JNICALL
 Java_com_example_poe_tutorstage1_TutorProfileActivity_getContact(JNIEnv *env, jobject,
                                                                  jlong ptr);
+JNIEXPORT jstring JNICALL
+Java_com_example_poe_tutorstage1_TutorProfileActivity_getLocation(JNIEnv *env, jobject,
+                                                                 jlong ptr);
 JNIEXPORT jdouble JNICALL
 Java_com_example_poe_tutorstage1_TutorProfileActivity_getRate(JNIEnv *env, jobject,
                                                               jlong ptr);

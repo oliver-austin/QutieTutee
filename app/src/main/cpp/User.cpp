@@ -14,7 +14,7 @@ User::User(std::string email){
 }
 
 User::User(std::string name, std::string email, std::string pwrd, std::string s_course, std::string
-            t_course, std::string contact, int tutor, std::string bio, double rate, int status){
+            t_course, std::string contact, int tutor, std::string bio, double rate, int status, std::string location){
     setName(name);
     setEmail(email);
     setPwrd(pwrd);
@@ -25,6 +25,7 @@ User::User(std::string name, std::string email, std::string pwrd, std::string s_
     setBio(bio);
     setRate(rate);
     setStatus(status);
+    setLocation(location);
 }
 
 //Accessors
@@ -58,6 +59,10 @@ std::string User::getBio() {
 
 std::string User::getContact() {
     return clone(contact);
+}
+
+std::string User::getLocation() {
+    return clone(location);
 }
 
 int User::getTutor() {
@@ -117,6 +122,10 @@ void User::setRate(double rate) {
 void User::setStatus(int status) {
     this->status = status;
 }
+void User::setLocation(std::string location) {
+    this->location = location;
+}
+
 //Clones
 std::string User::clone(std::string original) {
     std::string copy = original;

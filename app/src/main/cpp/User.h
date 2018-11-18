@@ -13,7 +13,7 @@ public:
     User();
     User(std::string email);
     User(std::string name, std::string email, std::string pwrd, std::string s_course, std::string
-    t_course, std::string contact, int tutor, std::string bio, double rate, int status);
+    t_course, std::string contact, int tutor, std::string bio, double rate, int status, std::string location);
 
 
     //Accesors
@@ -25,6 +25,7 @@ public:
     std::string getSCourse();
     std::string getBio();
     std::string getContact();
+    std::string getLocation();
     int getTutor();
     double getRate();
     int getStatus();
@@ -40,6 +41,7 @@ public:
     void setTutor(int tutor);
     void setBio(std::string bio);
     void setRate(double rate);
+    void setLocation(std::string location);
     void setStatus(int status);
 
     //Clones
@@ -56,6 +58,7 @@ private:
     std::string t_course;
     std::string bio;
     std::string contact;
+    std::string location;
     int tutor;
     double rate;
     int status;

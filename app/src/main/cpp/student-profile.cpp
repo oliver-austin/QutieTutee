@@ -80,6 +80,13 @@ Java_com_example_poe_tutorstage1_StudentProfileActivity_getContact(JNIEnv *env, 
     std::string contact = obj->getContact();
     return env->NewStringUTF(contact.c_str());
 }
+JNIEXPORT jstring JNICALL
+Java_com_example_poe_tutorstage1_StudentProfileActivity_getLocation(JNIEnv *env, jobject ,
+                                                                   jlong ptr) {
+    User *obj = (User *)ptr;
+    std::string location = obj->getLocation();
+    return env->NewStringUTF(location.c_str());
+}
 JNIEXPORT jdouble JNICALL
 Java_com_example_poe_tutorstage1_StudentProfileActivity_getRate(JNIEnv *env, jobject ,
                                                                  jlong ptr) {

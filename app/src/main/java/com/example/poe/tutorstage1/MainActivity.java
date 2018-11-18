@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         if(user.getContact() == null) {
             user.setContact("");
         }
+        if(user.getLocation() == null) {
+            user.setLocation("");
+        }
     }
 
     /**

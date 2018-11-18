@@ -30,6 +30,9 @@ JNIEXPORT jstring JNICALL
 JNIEXPORT jstring JNICALL
 Java_com_example_poe_tutorstage1_StudentProfileActivity_getContact(JNIEnv *env, jobject ,
                                                                    jlong ptr);
+JNIEXPORT jstring JNICALL
+Java_com_example_poe_tutorstage1_StudentProfileActivity_getLocation(JNIEnv *env, jobject ,
+                                                                   jlong ptr);
 JNIEXPORT jint JNICALL
         Java_com_example_poe_tutorstage1_StudentProfileActivity_getTutor(JNIEnv *env, jobject ,
                                                                          jlong ptr);

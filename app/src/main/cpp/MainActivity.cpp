@@ -34,6 +34,8 @@ Java_com_example_poe_tutorstage1_MainActivity_newUser(JNIEnv *env, jobject, jobj
     jstring bioObjectJava = (jstring)env->GetObjectField(JavaUser, bioId);
     jfieldID contactId = env->GetFieldID(user, "contact", "Ljava/lang/String;");
     jstring contactObjectJava = (jstring)env->GetObjectField(JavaUser, contactId);
+    jfieldID locationId = env->GetFieldID(user, "location", "Ljava/lang/String;");
+    jstring locationObjectJava = (jstring)env->GetObjectField(JavaUser, locationId);
     jfieldID tutorId = env->GetFieldID(user, "tutor", "I");
     jint tutorJava = (jint)env->GetIntField(JavaUser, tutorId);
     jfieldID rateId = env->GetFieldID(user, "rate", "D");
@@ -62,8 +64,11 @@ Java_com_example_poe_tutorstage1_MainActivity_newUser(JNIEnv *env, jobject, jobj
     const char *cstrContact = env->GetStringUTFChars(contactObjectJava, NULL);
     std::string contactStr = cstrContact;
 
+    const char *cstrLocation = env->GetStringUTFChars(locationObjectJava, NULL);
+    std::string locationStr = cstrLocation;
+
     return (long)(new User(nameStr, emailStr, pwrdStr, s_courseStr,
-                           t_courseStr, contactStr, tutorJava, bioStr, rateJava, statusJava));
+                           t_courseStr, contactStr, tutorJava, bioStr, rateJava, statusJava, locationStr));
     }
 }
 
