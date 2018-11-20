@@ -1,9 +1,7 @@
 
 #include <jni.h>
 #include <string>
-#include "User.h"
 #include "User.cpp"
-#include "tutor-list.h"
 
 extern "C"{
 JNIEXPORT jstring JNICALL
@@ -13,7 +11,7 @@ Java_com_example_poe_tutorstage1_TutorListActivity_getStudentCourse(JNIEnv *env,
     std::string course = obj->getSCourse();
     return env->NewStringUTF(course.c_str());
 }
-};
+}
 
 
 

@@ -13,7 +13,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -29,50 +32,63 @@ public class TutorListActivity extends AppCompatActivity {
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
 
-    static {
-        System.loadLibrary("sign-in");
-    }
+    private TextView mName;
+    private TextView mLocation;
+    private TextView mRate;
+    private TextView mBio;
+    private TextView mContact;
+    private RatingBar mStarBar;
+
+//    static {
+//        System.loadLibrary("tutor-list");
+//    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
-
-        APIController controller = new APIController();
+//
+//        APIController controller = new APIController();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_search);
-        long ptr = (long)getIntent().getSerializableExtra("userPointer");
-
-        controller.start(0, foo, new APICallbacks() {
-            @Override
-            public void onSuccess(@NonNull User user) {
-                allUsers.add(user);
-            }
-        });
-
-        String courseSeeking = getStudentCourse(ptr);
-
-        for(int i=0; i<allUsers.size(); i++){
-            if(allUsers.get(i).getTutor() == 1 && allUsers.get(i).getT_courses().equals(courseSeeking)){
-                System.out.println("Enter randy into list");
-                releventUsers.add(allUsers.get(i));
-            }
-        }
-//        User temp1 = new User();
-//        System.out.println("NAME 1:" + temp1.getName());
-//        temp1.setName("Hermoine Granger");
-//        System.out.println("NAME 1:" + temp1.getName());
-//        temp1.setLocation("Bain");
-//        temp1.setRate(14.50);
+//        long ptr = (long)getIntent().getSerializableExtra("userPointer");
 //
-//        User temp2 = new User();
-//        temp2.setName("Ron Weasly");
-//        temp2.setLocation("ILC 2nd Floor Plaza");
-//        temp2.setRate(11.75);
+//        controller.start(0, foo, new APICallbacks() {
+//            @Override
+//            public void onSuccess(@NonNull User user) {
+//                allUsers.add(user);
+//            }
+//        });
 //
+//        String courseSeeking = getStudentCourse(ptr);
 //
-//        releventUsers = new ArrayList<>();
-//        releventUsers.add(temp1);
-//        releventUsers.add(temp2);
+//        for(int i=0; i<allUsers.size(); i++){
+//            if(allUsers.get(i).getTutor() == 1 && allUsers.get(i).getT_courses().equals(courseSeeking)){
+//                System.out.println("Enter randy into list");
+//                releventUsers.add(allUsers.get(i));
+//            }
+//        }
+
+        //TEMP HARDCODED USERS
+        User temp1 = new User();
+        System.out.println("NAME 1:" + temp1.getName());
+        temp1.setName("Hermoine Granger");
+        System.out.println("NAME 1:" + temp1.getName());
+        temp1.setLocation("Bain");
+        temp1.setRate(14.50);
+        temp1.setBio("4th year Transfiguration Student. Likes Quidditch and long walks on the beach");
+        temp1.setStars(5);
+
+        User temp2 = new User();
+        temp2.setName("Ron Weasly");
+        temp2.setLocation("ILC 2nd Floor Plaza");
+        temp2.setRate(11.75);
+        temp2.setBio("really poor and trying to make some cash doing this");
+        temp2.setStars(1.4);
+
+
+        releventUsers = new ArrayList<>();
+        releventUsers.add(temp1);
+        releventUsers.add(temp2);
 
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
@@ -99,6 +115,23 @@ public class TutorListActivity extends AppCompatActivity {
                 layoutInflater =(LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
                 ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.support_tutor_search_popup, null);
 
+                mName = container.findViewById(R.id.popUpName);
+                mLocation = container.findViewById(R.id.popUpLocation);
+                mRate = container.findViewById(R.id.popUpRate);
+                mContact = container.findViewById(R.id.popUpContact);
+                mBio = container.findViewById(R.id.popUpBio);
+                mStarBar = container.findViewById(R.id.popUpStarBar);
+
+                //String tempRate = "$"+releventUsers.get(position).getRate();
+
+                mName.setText(releventUsers.get(position).getName());
+                mLocation.setText(releventUsers.get(position).getLocation());
+                mRate.setText("$"+releventUsers.get(position).getRate());
+                mContact.setText(releventUsers.get(position).getContact());
+                mBio.setText(releventUsers.get(position).getBio());
+                mStarBar.setNumStars((int)releventUsers.get(position).getStars());
+
+
                 popupWindow = new PopupWindow(container, 800, 800, true);
                 popupWindow.showAtLocation(recyclerView, Gravity.CENTER, 0, 0);
 
@@ -113,5 +146,5 @@ public class TutorListActivity extends AppCompatActivity {
             }
         });
     }
-    public native String getStudentCourse(long ptr);
+    //public native String getStudentCourse(long ptr);
 }
