@@ -1,10 +1,10 @@
-//
-// Created by Owner on 2018-11-20.
-//
+
 #include <jni.h>
 #include <string>
 #include "User.cpp"
 #include "User.h"
+
+
 
 extern "C" {
 
