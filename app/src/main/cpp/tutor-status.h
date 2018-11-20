@@ -1,6 +1,8 @@
 //
 // Created by Tyler Lee on 2018-11-17.
 //
+#include <jni.h>
+#include <string>
 
 #ifndef COLLINGWOODREPO_TUTOR_STATUS_H
 #define COLLINGWOODREPO_TUTOR_STATUS_H

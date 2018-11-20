@@ -1,6 +1,7 @@
 package com.example.poe.tutorstage1;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -19,12 +20,13 @@ public class TutorStatusActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutor_status);
         long ptr = (long)getIntent().getSerializableExtra("userPointer");
+        User user = (User)getIntent().getSerializableExtra("javaUser");
 
         mActive = findViewById(R.id.buttonActive);
         mActive.setVisibility(View.INVISIBLE);
         mActive.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                toggleActive(ptr);
+                toggleActive(ptr,user);
             }
 
         });
@@ -32,20 +34,27 @@ public class TutorStatusActivity extends AppCompatActivity {
         mInactive = findViewById(R.id.buttonInactive);
         mInactive.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                toggleInactive(ptr);
+                toggleInactive(ptr,user);
             }
 
         });
 
 
     }
-    public void toggleActive(long ptr){
+    public void toggleActive(long ptr,User user){
 
         mActive.setVisibility(View.INVISIBLE);
         mInactive.setVisibility(View.VISIBLE);
         mStatusSet = findViewById(R.id.setStatusBox);
         mStatusSet.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                APIController controller = new APIController();
+                controller.start(4, user, new APICallbacks() {
+                    @Override
+                    public void onSuccess(@NonNull User user) {
+                    }
+                });
+
                 setInactive(ptr);
 
                 int test = getStatus(ptr);
@@ -55,13 +64,19 @@ public class TutorStatusActivity extends AppCompatActivity {
         });
 
     }
-    public void toggleInactive(long ptr){
+    public void toggleInactive(long ptr,User user){
 
         mActive.setVisibility(View.VISIBLE);
         mInactive.setVisibility(View.INVISIBLE);
         mStatusSet = findViewById(R.id.setStatusBox);
         mStatusSet.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                APIController controller = new APIController();
+                controller.start(4, user, new APICallbacks() {
+                    @Override
+                    public void onSuccess(@NonNull User user) {
+                    }
+                });
                 setActive(ptr);
 
                 int test = getStatus(ptr);

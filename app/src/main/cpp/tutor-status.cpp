@@ -2,7 +2,7 @@
 // Created by Tyler Lee on 2018-11-17.
 //
 #include <jni.h>
-#include "tutor-status.h"
+#include <string>
 #include "User.cpp"
 
 extern "C" {
