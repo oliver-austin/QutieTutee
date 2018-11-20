@@ -24,6 +24,13 @@ Java_com_example_poe_tutorstage1_TutorStatusActivity_setInactive(JNIEnv *env, jo
 JNIEXPORT jint JNICALL
 Java_com_example_poe_tutorstage1_TutorStatusActivity_getStatus(JNIEnv *env, jobject, jlong ptr);
 
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getTutor(JNIEnv *env, jobject,
+                                                               jlong ptr);
+
+JNIEXPORT jstring JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getEmail(JNIEnv *env, jobject,
+                                                               jlong ptr);
 
 
 

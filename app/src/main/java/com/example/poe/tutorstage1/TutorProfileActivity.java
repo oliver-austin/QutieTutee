@@ -138,7 +138,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mSetStatus = findViewById(R.id.SetStatusBox);
         mSetStatus.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                switchTutorStatusActivity(view, ptr, user);
+                switchTutorStatusActivity(view, ptr);
             }
 
         });
@@ -177,7 +177,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mLocation.clearFocus();
 
     }
-    public void switchTutorStatusActivity(View view, long ptr, User user) {
+    public void switchTutorStatusActivity(View view, long ptr) {
         Intent intent = new Intent(this, TutorStatusActivity.class);
         intent.putExtra("userPointer", ptr);
         intent.putExtra("javaUser", user);
