@@ -2,9 +2,6 @@
 #include <jni.h>
 #include <string>
 #include "User.cpp"
-#include "User.h"
-
-
 
 extern "C" {
 
