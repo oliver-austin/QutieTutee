@@ -11,11 +11,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.Serializable;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.ResponseBody;
 
 public class MainActivity extends AppCompatActivity implements Serializable {
     User retrieveUser = new User();
-    String testStudentUser;
-    String testTutorUser;
+    User testStudentUser = new User();
+    User testTutorUser = new User();
     static {
         System.loadLibrary("sign-in");
     }
@@ -84,6 +88,10 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                 retrieveUser.setIn_session(user.getIn_session());
                 retrieveUser.setStars(user.getStars());
             }
+            @Override
+            public void onFail(@NonNull ResponseBody error){
+
+            }
         });
         long newUserPtr = newUser(retrieveUser);
         intent.putExtra("newUserPointer", newUserPtr);
@@ -100,14 +108,22 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         controller.start(2, signinUser, new APICallbacks() {
             @Override
             public void onSuccess(@NonNull User user) {
-                testStudentUser = user.toString();
+                testStudentUser = user;
+            }
+            @Override
+            public void onFail(@NonNull ResponseBody error){
+
             }
         });
         signinUser.setTutor(1);
         controller.start(2, signinUser, new APICallbacks() {
             @Override
             public void onSuccess(@NonNull User user) {
-                testTutorUser = user.toString();
+                testTutorUser = user;
+            }
+            @Override
+            public void onFail(@NonNull ResponseBody error){
+
             }
         });
 
@@ -137,6 +153,11 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                         signinUser.setIn_session(user.getIn_session());
                         signinUser.setStars(user.getStars());
                     }
+
+                }
+                @Override
+                public void onFail(@NonNull ResponseBody error){
+
                 }
             });
             long newUserPtr = newUser(signinUser);
@@ -147,49 +168,67 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
 
     public void signup(String mSignUpEmail, String mSignUpPassword) {
-        User signupUser = new User();
+        //User signupUser = new User();
         APIController controller = new APIController();
         Intent intent = new Intent(this, LandingActivity.class);
-        signupUser.setEmail(mSignUpEmail);
-        signupUser.setPassword(mSignUpPassword);
-        signupUser.setTutor(0);
+
+        testStudentUser.setEmail(mSignUpEmail);
+        testStudentUser.setPassword(mSignUpPassword);
+
+        testTutorUser.setEmail(mSignUpEmail);
+        testTutorUser.setPassword(mSignUpPassword);
+        testTutorUser.setTutor(1);
+
         retrieveUser.setEmail(mSignUpEmail);
         retrieveUser.setPassword(mSignUpPassword);
-        controller.start(2, signupUser, new APICallbacks() {
+        controller.start(2, testStudentUser, new APICallbacks() {
             @Override
             public void onSuccess(@NonNull User user) {
-                testStudentUser = user.toString();
-                System.out.println("Success student user");
+                System.out.println("USER.STUDENTFOUND");
+                System.out.println("USER."+user.email);
+                testStudentUser.setEmail("User exists");
+                Toast.makeText(MainActivity.this, "User already exists",
+                        Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onFail(@NonNull ResponseBody error){
+                try{
+                System.out.println("USER.STUDENTNOTFOUND"+ error.string());} catch (Exception e){}
+                if(!testStudentUser.getEmail().equals("User exists")) {
+                    controller.start(2, testTutorUser, new APICallbacks() {
+                        @Override
+                        public void onSuccess(@NonNull User user) {
+                            testTutorUser.setEmail("User exists");
+                            System.out.println("USER.TUTORFOUND");
 
-            }
-        });
-        signupUser.setTutor(1);
-        controller.start(2, signupUser, new APICallbacks() {
-            @Override
-            public void onSuccess(@NonNull User user) {
-                testTutorUser = user.toString();
-                System.out.println("Successful tutor user");
-            }
-        });
-        System.out.println("HELLLLOO"+testStudentUser);
-        if (testStudentUser == null && testTutorUser == null) {
-            System.out.println("EMAIL0:"+retrieveUser.getEmail());
-            controller.start(3, retrieveUser, new APICallbacks() {
-                @Override
-                public void onSuccess(@NonNull User user) {
-                    retrieveUser.setEmail(mSignUpEmail);
-                    retrieveUser.setPassword(mSignUpPassword);
-                    System.out.println("EMAIL:"+retrieveUser.getEmail());
+                            Toast.makeText(MainActivity.this, "User already exists",
+                                    Toast.LENGTH_LONG).show();
+                        }
+
+                        @Override
+                        public void onFail(@NonNull ResponseBody error) {
+                            System.out.println("USER.TUTORNOTFOUND");
+                            if(!testTutorUser.getEmail().equals("User exists")) {
+                                /*controller.start(3, retrieveUser, new APICallbacks() {
+                                    @Override
+                                    public void onSuccess(@NonNull User user) {
+                                        System.out.println("USER. new user created");
+                                        long newUserPtr = newUser(retrieveUser);
+                                        intent.putExtra("userPointer", newUserPtr);
+                                        startActivity(intent);
+                                    }
+
+                                    @Override
+                                    public void onFail(@NonNull ResponseBody error) {
+                                        System.out.println("USER. failed to create");
+                                    }
+                                });*/
+                            }
+                        }
+                    });
                 }
-            });
-            long newUserPtr = newUser(retrieveUser);
-            intent.putExtra("userPointer", newUserPtr);
-            startActivity(intent);
-        }
-        else {
-            Toast.makeText(MainActivity.this, "User already exists",
-                            Toast.LENGTH_LONG).show();
-        }
+            }
+        });
     }
 
     public void replaceNullFields(User user){
