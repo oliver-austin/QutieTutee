@@ -30,7 +30,7 @@ public class TutorListActivity extends AppCompatActivity {
     private LayoutInflater layoutInflater;
 
     static {
-        System.loadLibrary("sign-in");
+        System.loadLibrary("tutor-list");
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
