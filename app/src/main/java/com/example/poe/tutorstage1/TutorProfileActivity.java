@@ -1,6 +1,7 @@
 package com.example.poe.tutorstage1;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,13 +10,14 @@ import android.widget.EditText;
 
 public class TutorProfileActivity extends AppCompatActivity {
     static {
-        System.loadLibrary("native-lib");
+        System.loadLibrary("tutor-profile");
     }
     private EditText mName;
     private EditText mCourse;
     private EditText mContact;
     private EditText mRate;
     private EditText mBio;
+    private EditText mLocation;
     private Button mSave;
     private Button mEdit;
     private Button mSwitchToStudentActivity;
@@ -31,6 +33,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mContact = findViewById(R.id.ContactInfoTextBox);
         mRate = findViewById(R.id.RateTextBox);
         mBio = findViewById(R.id.BioTextBox);
+        mLocation = findViewById(R.id.LocationTextBox);
         mSwitchToStudentActivity = findViewById(R.id.SwitchToStudentButton);
 
         // set initial entries of profile
@@ -38,6 +41,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         String course = getTutorCourse(ptr);
         String contact = getContact(ptr);
         String bio = getBio(ptr);
+        String location = getLocation(ptr);
         double rate = getRate(ptr);
 
         if(!name.equals("")){
@@ -52,6 +56,9 @@ public class TutorProfileActivity extends AppCompatActivity {
         if(!bio.equals("")){
             mBio.setText(bio);
         }
+        if(!location.equals("")){
+            mLocation.setText(location);
+        }
         if(rate != 0){
             String stringRate = Double.toString(rate);
             mRate.setText(stringRate);
@@ -63,6 +70,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mContact.setFocusableInTouchMode(false);
         mRate.setFocusableInTouchMode(false);
         mBio.setFocusableInTouchMode(false);
+        mLocation.setFocusableInTouchMode(false);
 
         mSave = findViewById(R.id.saveProfile);
         mSave.setVisibility(View.INVISIBLE);
@@ -76,6 +84,7 @@ public class TutorProfileActivity extends AppCompatActivity {
                 String tutorCourse = mCourse.getText().toString();
                 String bio = mBio.getText().toString();
                 String contact = mContact.getText().toString();
+                String location = mLocation.getText().toString();
                 String rateString = mRate.getText().toString();
                 Double rate;
                 if(rateString.isEmpty()){
@@ -89,25 +98,33 @@ public class TutorProfileActivity extends AppCompatActivity {
                 user.setS_courses(getStudentCourse(ptr));
                 user.setContact(contact);
                 user.setEmail(getEmail(ptr));
-                user.setPwrd(getPassword(ptr));
+                user.setPassword(getPassword(ptr));
                 user.setT_courses(tutorCourse);
                 user.setTutor(getTutor(ptr));
                 user.setBio(bio);
                 user.setRate(rate);
+                user.setLocation(location);
+                user.setStatus(getStatus(ptr));
+                user.setAvailable(getAvailable(ptr));
+                user.setDuration(getDuration(ptr));
+                user.setIn_session(getInSession(ptr));
+                user.setStars(getStars(ptr));
 
-                // call api to update user
-                //APIController controller = new APIController();
-                //        controller.start(4, user);
-                saveProfile(ptr, userName, tutorCourse, bio, contact, rate);
+                APIController controller = new APIController();
+                controller.start(4, user, new APICallbacks() {
+                    @Override
+                    public void onSuccess(@NonNull User user) {
+                    }
+                });
+                saveProfile(ptr, userName, tutorCourse, bio, contact, rate, location);
                 toggleSaveProfile();
-
             }
         });
 
         Button mSwitchToStudentActivity = (Button)findViewById(R.id.SwitchToStudentButton);
         mSwitchToStudentActivity.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                switchStudentProfileActivity(view);
+                switchStudentProfileActivity(view, ptr);
             }
         });
         mEdit = findViewById(R.id.enterEditMode);
@@ -120,7 +137,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mSetStatus = findViewById(R.id.SetStatusBox);
         mSetStatus.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                switchTutorStatusActivity(view);
+                switchTutorStatusActivity(view, ptr);
             }
 
         });
@@ -132,6 +149,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mContact.setFocusableInTouchMode(true);
         mRate.setFocusableInTouchMode(true);
         mBio.setFocusableInTouchMode(true);
+        mLocation.setFocusableInTouchMode(true);
 
         mSave.setVisibility(View.VISIBLE);
         mEdit.setVisibility(View.INVISIBLE);
@@ -144,6 +162,7 @@ public class TutorProfileActivity extends AppCompatActivity {
         mContact.setFocusableInTouchMode(false);
         mRate.setFocusableInTouchMode(false);
         mBio.setFocusableInTouchMode(false);
+        mLocation.setFocusableInTouchMode(false);
 
         mSave.setVisibility(View.INVISIBLE);
         mEdit.setVisibility(View.VISIBLE);
@@ -154,19 +173,20 @@ public class TutorProfileActivity extends AppCompatActivity {
         mContact.clearFocus();
         mRate.clearFocus();
         mBio.clearFocus();
-
-
+        mLocation.clearFocus();
 
     }
-    public void switchTutorStatusActivity(View view) {
+    public void switchTutorStatusActivity(View view, long ptr) {
         Intent intent = new Intent(this, TutorStatusActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
-    public void switchStudentProfileActivity(View view) {
+    public void switchStudentProfileActivity(View view, long ptr) {
         Intent intent = new Intent(this, StudentProfileActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
-    public native void saveProfile(long ptr, String name, String course, String bio, String contact, double rate);
+    public native void saveProfile(long ptr, String name, String course, String bio, String contact, double rate, String location);
     public native String getUserName(long ptr);
     public native String getStudentCourse(long ptr);
     public native String getEmail(long ptr);
@@ -174,6 +194,12 @@ public class TutorProfileActivity extends AppCompatActivity {
     public native String getTutorCourse(long ptr);
     public native String getBio(long ptr);
     public native String getContact(long ptr);
+    public native String getLocation(long ptr);
     public native int getTutor(long ptr);
     public native double getRate(long ptr);
+    public native int getStatus(long ptr);
+    public native int getAvailable(long ptr);
+    public native int getDuration(long ptr);
+    public native int getInSession(long ptr);
+    public native double getStars(long ptr);
 }

@@ -1,13 +1,12 @@
 package com.example.poe.tutorstage1;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
 
 public class StudentProfileActivity extends AppCompatActivity {
     static {
@@ -35,8 +34,6 @@ public class StudentProfileActivity extends AppCompatActivity {
         if(!course.equals("")){
             mCourse.setText(course);
         }
-
-
         mName.setFocusableInTouchMode(false);
         mCourse.setFocusableInTouchMode(false);
 
@@ -52,15 +49,25 @@ public class StudentProfileActivity extends AppCompatActivity {
                 user.setName(userName);
                 user.setS_courses(studentCourse);
                 user.setEmail(getEmail(ptr));
-                user.setPwrd(getPassword(ptr));
+                user.setPassword(getPassword(ptr));
                 user.setT_courses(getTutorCourse(ptr));
                 user.setTutor(getTutor(ptr));
                 user.setBio(getBio(ptr));
                 user.setRate(getRate(ptr));
+                user.setLocation(getLocation(ptr));
+                user.setStatus(getStatus(ptr));
+                user.setContact(getContact(ptr));
+                user.setAvailable(getAvailable(ptr));
+                user.setDuration(getDuration(ptr));
+                user.setIn_session(getInSession(ptr));
+                user.setStars(getStars(ptr));
 
-                // call api to update user
-                //APIController controller = new APIController();
-                //        controller.start(4, user);
+                APIController controller = new APIController();
+                        controller.start(4, user, new APICallbacks() {
+                            @Override
+                            public void onSuccess(@NonNull User user) {
+                            }
+                        });
                 saveProfile(ptr, userName, studentCourse);
                 toggleSaveProfile();
             }
@@ -69,13 +76,13 @@ public class StudentProfileActivity extends AppCompatActivity {
         Button mTutorListActivity = (Button) findViewById(R.id.tutorListActivityButton);
         mTutorListActivity.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                switchTutorListActivity(view);
+                switchTutorListActivity(view, ptr);
             }
         });
         mSwitchToTutorActivity = findViewById(R.id.SwitchToTutorButton);
         mSwitchToTutorActivity.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view){
-                switchTutorProfileActivity(view);
+                switchTutorProfileActivity(view, ptr);
             }
         });
         mEdit = findViewById(R.id.enterEditMode);
@@ -86,8 +93,9 @@ public class StudentProfileActivity extends AppCompatActivity {
 
         });
     }
-    public void switchTutorListActivity(View view) {
+    public void switchTutorListActivity(View view, long ptr) {
         Intent intent = new Intent(this, TutorListActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
     public void toggleEditProfile(){
@@ -105,10 +113,10 @@ public class StudentProfileActivity extends AppCompatActivity {
         mSwitchToTutorActivity.setVisibility(View.VISIBLE);
         mName.clearFocus();
         mCourse.clearFocus();
-
     }
-    public void switchTutorProfileActivity(View view) {
+    public void switchTutorProfileActivity(View view, long ptr) {
         Intent intent = new Intent(this, TutorProfileActivity.class);
+        intent.putExtra("userPointer", ptr);
         startActivity(intent);
     }
     public native void saveProfile(long ptr, String name, String course);
@@ -118,7 +126,14 @@ public class StudentProfileActivity extends AppCompatActivity {
     public native String getPassword(long ptr);
     public native String getTutorCourse(long ptr);
     public native String getBio(long ptr);
+    public native String getLocation(long ptr);
+    public native String getContact(long ptr);
     public native int getTutor(long ptr);
     public native double getRate(long ptr);
+    public native int getStatus(long ptr);
+    public native int getAvailable(long ptr);
+    public native int getDuration(long ptr);
+    public native int getInSession(long ptr);
+    public native double getStars(long ptr);
 }
 

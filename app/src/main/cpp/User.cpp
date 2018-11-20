@@ -14,7 +14,7 @@ User::User(std::string email){
 }
 
 User::User(std::string name, std::string email, std::string pwrd, std::string s_course, std::string
-            t_course, std::string contact, int tutor, std::string bio, double rate){
+            t_course, std::string contact, int tutor, std::string bio, double rate, int status, std::string location, int available, int duration, int in_session, double stars){
     setName(name);
     setEmail(email);
     setPwrd(pwrd);
@@ -24,6 +24,12 @@ User::User(std::string name, std::string email, std::string pwrd, std::string s_
     setTutor(tutor);
     setBio(bio);
     setRate(rate);
+    setStatus(status);
+    setLocation(location);
+    setAvailable(available);
+    setDuration(duration);
+    setIn_session(in_session);
+    setStars(stars);
 }
 
 //Accessors
@@ -59,6 +65,10 @@ std::string User::getContact() {
     return clone(contact);
 }
 
+std::string User::getLocation() {
+    return clone(location);
+}
+
 int User::getTutor() {
     int copy = tutor;
     return copy;
@@ -66,6 +76,29 @@ int User::getTutor() {
 
 double User::getRate() {
     double copy = rate;
+    return copy;
+}
+int User::getStatus(){
+    int copy = status;
+    return copy;
+}
+int User::getAvailable(){
+    int copy = available;
+    return copy;
+}
+
+int User::getDuration(){
+    int copy = duration;
+    return copy;
+}
+
+int User::getIn_session(){
+    int copy = in_session;
+    return copy;
+}
+
+double User::getStars() {
+    double copy = stars;
     return copy;
 }
 
@@ -108,6 +141,30 @@ void User::setBio(std::string bio) {
 
 void User::setRate(double rate) {
     this->rate = rate;
+}
+
+void User::setStatus(int status) {
+    this->status = status;
+}
+
+void User::setLocation(std::string location) {
+    this->location = location;
+}
+
+void User::setAvailable(int available) {
+    this->available = available;
+}
+
+void User::setDuration(int duration) {
+    this->duration = duration;
+}
+
+void User::setIn_session(int in_session) {
+    this->in_session = in_session;
+}
+
+void User::setStars(double stars) {
+    this->stars = stars;
 }
 
 //Clones

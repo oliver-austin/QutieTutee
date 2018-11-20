@@ -1,0 +1,10 @@
+package com.example.poe.tutorstage1;
+
+import android.content.Intent;
+import android.support.annotation.NonNull;
+
+import java.io.Serializable;
+
+public interface APICallbacks extends Serializable {
+    void onSuccess(@NonNull User user);
+}

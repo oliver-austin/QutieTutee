@@ -17,6 +17,7 @@
     <string name="contact_info">Contact Info:</string>
     <string name="rate">Rate:</string>
     <string name="bio">Bio:</string>
+    <string name="location">Location:</string>
     <string name="available_offline">Available Offline:</string>
     <string name="set_status">Set Status</string>
     <string name="confirm">Confirm</string>

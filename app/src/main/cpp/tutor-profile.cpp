@@ -1,6 +1,7 @@
 #include <jni.h>
 #include <string>
 #include "User.cpp"
+#include "User.h"
 
 extern "C" {
 JNIEXPORT void JNICALL
@@ -9,13 +10,14 @@ Java_com_example_poe_tutorstage1_TutorProfileActivity_saveProfile(JNIEnv *env, j
                                                                   jstring userCoursesJava,
                                                                   jstring userBioJava,
                                                                   jstring userContactJava,
-                                                                  jdouble userRateJava) {
+                                                                  jdouble userRateJava, jstring userLocationJava) {
     // Get C++ User object fields
     User *obj = (User *) ptr;
     std::string name = obj->getName();
     std::string bio = obj->getBio();
     std::string courses = obj->getTCourse();
     std::string contact = obj->getContact();
+    std::string location = obj->getLocation();
     double rate = obj->getRate();
 
     //Get fields from GUI in C++
@@ -27,15 +29,18 @@ Java_com_example_poe_tutorstage1_TutorProfileActivity_saveProfile(JNIEnv *env, j
     std::string bioGUI = std::string(pathBio);
     const char *pathContact = env->GetStringUTFChars(userContactJava, NULL);
     std::string contactGUI = std::string(pathContact);
+    const char *pathLocation = env->GetStringUTFChars(userLocationJava, NULL);
+    std::string locationGUI = std::string(pathLocation);
 
     //Compare GUI and C++ object values, if different update C++ object values
     if (coursesGUI != courses || nameGUI != name || bioGUI != bio || rate != userRateJava ||
-        contactGUI != contact) {
+        contactGUI != contact || locationGUI != location) {
         obj->setTCourse(coursesGUI);
         obj->setName(nameGUI);
         obj->setBio(bioGUI);
         obj->setContact(contactGUI);
         obj->setRate(userRateJava);
+        obj->setLocation(locationGUI);
 
     }
 }
@@ -95,11 +100,53 @@ Java_com_example_poe_tutorstage1_TutorProfileActivity_getContact(JNIEnv *env, jo
     std::string contact = obj->getContact();
     return env->NewStringUTF(contact.c_str());
 }
+JNIEXPORT jstring JNICALL
+Java_com_example_poe_tutorstage1_TutorProfileActivity_getLocation(JNIEnv *env, jobject,
+                                                                 jlong ptr) {
+    User *obj = (User *) ptr;
+    std::string location = obj->getLocation();
+    return env->NewStringUTF(location.c_str());
+}
 JNIEXPORT jdouble JNICALL
 Java_com_example_poe_tutorstage1_TutorProfileActivity_getRate(JNIEnv *env, jobject,
                                                               jlong ptr) {
     User *obj = (User *) ptr;
     double rate = obj->getRate();
     return rate;
+}
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorProfileActivity_getStatus(JNIEnv *env, jobject,
+                                                               jlong ptr) {
+    User *obj = (User *) ptr;
+    int status = obj->getStatus();
+    return status;
+}
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorProfileActivity_getAvailable(JNIEnv *env, jobject ,
+                                                                     jlong ptr) {
+    User *obj = (User *)ptr;
+    int available = obj->getAvailable();
+    return available;
+}
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorProfileActivity_getDuration(JNIEnv *env, jobject ,
+                                                                    jlong ptr) {
+    User *obj = (User *)ptr;
+    int duration = obj->getDuration();
+    return duration;
+}
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorProfileActivity_getInSession(JNIEnv *env, jobject ,
+                                                                     jlong ptr) {
+    User *obj = (User *)ptr;
+    int in_session = obj->getIn_session();
+    return in_session;
+}
+JNIEXPORT jdouble JNICALL
+Java_com_example_poe_tutorstage1_TutorProfileActivity_getStars(JNIEnv *env, jobject ,
+                                                                 jlong ptr) {
+    User *obj = (User *)ptr;
+    double stars = obj->getStars();
+    return stars;
 }
 }
