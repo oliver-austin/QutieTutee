@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity implements Serializable {
             }
         });
     }
+    @Override
+    public void onBackPressed() {}
     public void switchLandingActivity(View view) {
         APIController controller = new APIController();
 
