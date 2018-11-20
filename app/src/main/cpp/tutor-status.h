@@ -15,23 +15,52 @@ Java_com_example_poe_tutorstage1_TutorStatusActivity_setStatus(JNIEnv *env, jobj
                                                                   jint setInactive,
                                                                   jint getStatus);
                                                                   */
-JNIEXPORT void JNICALL
-Java_com_example_poe_tutorstage1_TutorStatusActivity_setActive(JNIEnv *env, jobject, jlong ptr);
-
-JNIEXPORT void JNICALL
-Java_com_example_poe_tutorstage1_TutorStatusActivity_setInactive(JNIEnv *env, jobject, jlong ptr);
-
-JNIEXPORT jint JNICALL
-Java_com_example_poe_tutorstage1_TutorStatusActivity_getStatus(JNIEnv *env, jobject, jlong ptr);
-
-JNIEXPORT jint JNICALL
-Java_com_example_poe_tutorstage1_TutorStatusActivity_getTutor(JNIEnv *env, jobject,
-                                                               jlong ptr);
-
+JNIEXPORT jstring JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getUserName(JNIEnv *env, jobject,
+                                                                  jlong ptr);
+JNIEXPORT jstring JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getStudentCourse(JNIEnv *env, jobject,
+                                                                       jlong ptr);
 JNIEXPORT jstring JNICALL
 Java_com_example_poe_tutorstage1_TutorStatusActivity_getEmail(JNIEnv *env, jobject,
                                                                jlong ptr);
-
+JNIEXPORT jstring JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getPassword(JNIEnv *env, jobject,
+                                                                  jlong ptr);
+JNIEXPORT jstring JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getTutorCourse(JNIEnv *env, jobject,
+                                                                     jlong ptr);
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getTutor(JNIEnv *env, jobject,
+                                                               jlong ptr);
+JNIEXPORT jstring JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getBio(JNIEnv *env, jobject,
+                                                             jlong ptr);
+JNIEXPORT jstring JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getContact(JNIEnv *env, jobject,
+                                                                 jlong ptr);
+JNIEXPORT jstring JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getLocation(JNIEnv *env, jobject,
+                                                                  jlong ptr);
+JNIEXPORT jdouble JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getRate(JNIEnv *env, jobject,
+                                                              jlong ptr);
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getStatus(JNIEnv *env, jobject,
+                                                                jlong ptr);
+}
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getAvailable(JNIEnv *env, jobject ,
+                                                                   jlong ptr);
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getDuration(JNIEnv *env, jobject ,
+                                                                  jlong ptr);
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getInSession(JNIEnv *env, jobject ,
+                                                                   jlong ptr);
+JNIEXPORT jdouble JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_getStars(JNIEnv *env, jobject ,
+                                                               jlong ptr);
 
 
 }
