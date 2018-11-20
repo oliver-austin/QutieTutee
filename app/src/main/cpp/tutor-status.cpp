@@ -28,9 +28,9 @@ Java_com_example_poe_tutorstage1_TutorStatusActivity_getStatus(JNIEnv *env, jobj
 JNIEXPORT jstring JNICALL
 Java_com_example_poe_tutorstage1_TutorStatusActivity_getEmail(JNIEnv *env, jobject,
 jlong ptr) {
-User *obj = (User *) ptr;
-std::string email = obj->getEmail();
-return env->NewStringUTF(email.c_str());
+    User *obj = (User *) ptr;
+    std::string email = obj->getEmail();
+    return env->NewStringUTF(email.c_str());
 }
 
 JNIEXPORT jint JNICALL

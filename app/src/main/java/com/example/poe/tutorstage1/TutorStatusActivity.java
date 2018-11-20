@@ -15,7 +15,6 @@ public class TutorStatusActivity extends AppCompatActivity {
     }
     private Button mActive;
     private Button mInactive;
-    private Button mStatusSet;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -27,11 +26,11 @@ public class TutorStatusActivity extends AppCompatActivity {
         mInactive = findViewById(R.id.buttonInactive);
 
         if (user.getStatus()==0){
-            mActive.setVisibility(View.VISIBLE);
-            mInactive.setVisibility(View.INVISIBLE);
-        }else{
             mActive.setVisibility(View.INVISIBLE);
             mInactive.setVisibility(View.VISIBLE);
+        }else{
+            mActive.setVisibility(View.VISIBLE);
+            mInactive.setVisibility(View.INVISIBLE);
         }
 
         mActive.setOnClickListener(new View.OnClickListener() {
@@ -45,7 +44,6 @@ public class TutorStatusActivity extends AppCompatActivity {
         mInactive.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 toggleInactive(ptr);
-
             }
 
         });
