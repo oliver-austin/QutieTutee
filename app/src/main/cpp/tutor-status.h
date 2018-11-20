@@ -15,6 +15,12 @@ Java_com_example_poe_tutorstage1_TutorStatusActivity_setStatus(JNIEnv *env, jobj
                                                                   jint setInactive,
                                                                   jint getStatus);
                                                                   */
+JNIEXPORT void JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_setActive(JNIEnv *env, jobject, jlong ptr) {
+}
+JNIEXPORT void JNICALL
+Java_com_example_poe_tutorstage1_TutorStatusActivity_setInactive(JNIEnv *env, jobject, jlong ptr) {
+}
 JNIEXPORT jstring JNICALL
 Java_com_example_poe_tutorstage1_TutorStatusActivity_getUserName(JNIEnv *env, jobject,
                                                                   jlong ptr);
