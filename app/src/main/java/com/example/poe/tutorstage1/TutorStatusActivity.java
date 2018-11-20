@@ -1,12 +1,10 @@
 package com.example.poe.tutorstage1;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 public class TutorStatusActivity extends AppCompatActivity {
     User user = new User();
@@ -51,6 +49,36 @@ public class TutorStatusActivity extends AppCompatActivity {
 
     }
     public void toggleActive(long ptr){
+        mActive.setVisibility(View.INVISIBLE);
+        mInactive.setVisibility(View.VISIBLE);
+        user.setName(getUserName(ptr));
+        user.setS_courses(getStudentCourse(ptr));
+        user.setContact(getContact(ptr));
+        user.setEmail(getEmail(ptr));
+        user.setPassword(getPassword(ptr));
+        user.setT_courses(getTutorCourse(ptr));
+        user.setTutor(getTutor(ptr));
+        user.setBio(getBio(ptr));
+        user.setRate(getRate(ptr));
+        user.setLocation(getLocation(ptr));
+        user.setStatus(0);
+        user.setAvailable(getAvailable(ptr));
+        user.setDuration(getDuration(ptr));
+        user.setIn_session(getInSession(ptr));
+        user.setStars(getStars(ptr));
+
+        APIController controller = new APIController();
+        controller.start(4, user, new APICallbacks() {
+            @Override
+            public void onSuccess(@NonNull User user) {
+
+            }
+        });
+        setInactive(ptr);
+    }
+    public void toggleInactive(long ptr){
+        mActive.setVisibility(View.VISIBLE);
+        mInactive.setVisibility(View.INVISIBLE);
 
         user.setName(getUserName(ptr));
         user.setS_courses(getStudentCourse(ptr));
@@ -74,52 +102,8 @@ public class TutorStatusActivity extends AppCompatActivity {
             public void onSuccess(@NonNull User user) {
 
             }
-        });
-        setInactive(ptr);
-        int test = getStatus(ptr);
-        Toast.makeText(TutorStatusActivity.this, Integer.toString(test),
-                Toast.LENGTH_LONG).show();
-
-
-
-    }
-    public void toggleInactive(long ptr){
-
-        mActive.setVisibility(View.VISIBLE);
-        mInactive.setVisibility(View.INVISIBLE);
-
-        user.setName(getUserName(ptr));
-        user.setS_courses(getStudentCourse(ptr));
-        user.setContact(getContact(ptr));
-        user.setEmail(getEmail(ptr));
-        user.setPassword(getPassword(ptr));
-        user.setT_courses(getTutorCourse(ptr));
-        user.setTutor(getTutor(ptr));
-        user.setBio(getBio(ptr));
-        user.setRate(getRate(ptr));
-        user.setLocation(getLocation(ptr));
-        user.setStatus(0);
-        user.setAvailable(getAvailable(ptr));
-        user.setDuration(getDuration(ptr));
-        user.setIn_session(getInSession(ptr));
-        user.setStars(getStars(ptr));
-
-        APIController controller = new APIController();
-        controller.start(4, user, new APICallbacks() {
-            @Override
-            public void onSuccess(@NonNull User user) {
-
-            }
             });
         setActive(ptr);
-
-
-        int test = getStatus(ptr);
-        Toast.makeText(TutorStatusActivity.this, Integer.toString(test),
-                Toast.LENGTH_LONG).show();
-
-
-
     }
 
     public native void setActive(long ptr);
