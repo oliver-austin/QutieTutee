@@ -4,7 +4,7 @@ package com.example.poe.tutorstage1;
 
 public class User implements Serializable {
     public User(){
-        name = "Randy";
+        name = "";
         s_courses = "";
         t_courses = "";
         email = "";

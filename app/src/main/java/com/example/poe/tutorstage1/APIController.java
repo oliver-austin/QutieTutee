@@ -8,6 +8,7 @@ import com.google.gson.GsonBuilder;
 import java.io.Serializable;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -42,7 +43,8 @@ public class APIController implements Serializable {
                             userList.forEach(user ->
                             callbacks.onSuccess(user));
                         } else {
-                            System.out.println(response.errorBody());
+                            ResponseBody error = response.errorBody();
+                            callbacks.onFail(error);
                         }
                     }
 
@@ -62,7 +64,8 @@ public class APIController implements Serializable {
                             List<User> userList = response.body();
                             userList.forEach(user -> callbacks.onSuccess(user));
                         } else {
-                            System.out.println(response.errorBody());
+                            ResponseBody error = response.errorBody();
+                            callbacks.onFail(error);
                         }
                     }
 
@@ -81,10 +84,14 @@ public class APIController implements Serializable {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.isSuccessful()) {
+                            System.out.println("USER. SUCCESS CODE"+response.code());
                             User user = response.body();
                             callbacks.onSuccess(user);
+                            return;
                         } else {
-                            System.out.println(response.errorBody());
+                            System.out.println("USER. FAIL CODE"+response.code());
+                            ResponseBody error = response.errorBody();
+                            callbacks.onFail(error);
                         }
                     }
 
@@ -105,7 +112,8 @@ public class APIController implements Serializable {
                         if (response.isSuccessful()) {
                             int code = response.code();
                         } else {
-                            System.out.println(response.errorBody());
+                            ResponseBody error = response.errorBody();
+                            callbacks.onFail(error);
                         }
                     }
 
@@ -124,7 +132,8 @@ public class APIController implements Serializable {
                         if (response.isSuccessful()) {
                             System.out.println("Successful API call");
                         } else {
-                            System.out.println(response.errorBody());
+                            ResponseBody error = response.errorBody();
+                            callbacks.onFail(error);
                         }
                     }
 
