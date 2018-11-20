@@ -44,7 +44,6 @@ public class APIController implements Serializable {
                             callbacks.onSuccess(user));
                         } else {
                             ResponseBody error = response.errorBody();
-                            callbacks.onFail(error);
                         }
                     }
 
@@ -65,7 +64,6 @@ public class APIController implements Serializable {
                             userList.forEach(user -> callbacks.onSuccess(user));
                         } else {
                             ResponseBody error = response.errorBody();
-                            callbacks.onFail(error);
                         }
                     }
 
@@ -90,8 +88,8 @@ public class APIController implements Serializable {
                             return;
                         } else {
                             System.out.println("USER. FAIL CODE"+response.code());
-                            ResponseBody error = response.errorBody();
-                            callbacks.onFail(error);
+                            User user = response.body();
+                            callbacks.onSuccess(user);
                         }
                     }
 
@@ -113,7 +111,6 @@ public class APIController implements Serializable {
                             int code = response.code();
                         } else {
                             ResponseBody error = response.errorBody();
-                            callbacks.onFail(error);
                         }
                     }
 
@@ -133,7 +130,6 @@ public class APIController implements Serializable {
                             System.out.println("Successful API call");
                         } else {
                             ResponseBody error = response.errorBody();
-                            callbacks.onFail(error);
                         }
                     }
 

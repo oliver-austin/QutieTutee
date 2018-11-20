@@ -9,5 +9,4 @@ import okhttp3.ResponseBody;
 
 public interface APICallbacks extends Serializable {
     void onSuccess(@NonNull User user);
-    void onFail(@NonNull ResponseBody error);
 }

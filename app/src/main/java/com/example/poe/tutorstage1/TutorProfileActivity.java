@@ -118,10 +118,6 @@ public class TutorProfileActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(@NonNull User user) {
                     }
-                    @Override
-                    public void onFail(@NonNull ResponseBody error){
-
-                    }
                 });
                 saveProfile(ptr, userName, tutorCourse, bio, contact, rate, location);
                 toggleSaveProfile();

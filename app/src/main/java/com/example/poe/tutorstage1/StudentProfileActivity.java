@@ -69,10 +69,6 @@ public class StudentProfileActivity extends AppCompatActivity {
                             @Override
                             public void onSuccess(@NonNull User user) {
                             }
-                            @Override
-                            public void onFail(@NonNull ResponseBody error){
-
-                            }
                         });
                 saveProfile(ptr, userName, studentCourse);
                 toggleSaveProfile();
