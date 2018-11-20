@@ -34,8 +34,6 @@ public class TutorStatusActivity extends AppCompatActivity {
             mInactive.setVisibility(View.VISIBLE);
         }
 
-
-        mActive.setVisibility(View.INVISIBLE);
         mActive.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 toggleActive(ptr);
@@ -58,55 +56,50 @@ public class TutorStatusActivity extends AppCompatActivity {
 
         mActive.setVisibility(View.INVISIBLE);
         mInactive.setVisibility(View.VISIBLE);
-        mStatusSet = findViewById(R.id.setStatusBox);
-        mStatusSet.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                user.setEmail(getEmail(ptr));
-                user.setTutor(getTutor(ptr));
-                user.setStatus(1);
 
-                APIController controller = new APIController();
-                controller.start(4, user, new APICallbacks() {
-                    @Override
-                    public void onSuccess(@NonNull User user) {
-                    }
+        user.setEmail(getEmail(ptr));
+        user.setTutor(getTutor(ptr));
+        user.setStatus(1);
 
-                });
+        APIController controller = new APIController();
+        controller.start(4, user, new APICallbacks() {
+            @Override
+            public void onSuccess(@NonNull User user) {
 
-                setInactive(ptr);
-
-                int test = getStatus(ptr);
-                Toast.makeText(TutorStatusActivity.this, Integer.toString(test),
-                        Toast.LENGTH_LONG).show();
             }
         });
+        setInactive(ptr);
+        int test = getStatus(ptr);
+        Toast.makeText(TutorStatusActivity.this, Integer.toString(test),
+                Toast.LENGTH_LONG).show();
+
+
 
     }
     public void toggleInactive(long ptr){
 
         mActive.setVisibility(View.VISIBLE);
         mInactive.setVisibility(View.INVISIBLE);
-        mStatusSet = findViewById(R.id.setStatusBox);
-        mStatusSet.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                user.setEmail(getEmail(ptr));
-                user.setTutor(getTutor(ptr));
-                user.setStatus(0);
-                APIController controller = new APIController();
-                controller.start(4, user, new APICallbacks() {
-                    @Override
-                    public void onSuccess(@NonNull User user) {
-                    }
-                });
-                setActive(ptr);
 
-
-                int test = getStatus(ptr);
-                Toast.makeText(TutorStatusActivity.this, Integer.toString(test),
-                        Toast.LENGTH_LONG).show();
+        user.setEmail(getEmail(ptr));
+        user.setTutor(getTutor(ptr));
+        user.setStatus(0);
+        APIController controller = new APIController();
+        controller.start(4, user, new APICallbacks() {
+            @Override
+            public void onSuccess(@NonNull User user) {
 
             }
-        });
+            });
+        setActive(ptr);
+
+
+        int test = getStatus(ptr);
+        Toast.makeText(TutorStatusActivity.this, Integer.toString(test),
+                Toast.LENGTH_LONG).show();
+
+
+
     }
     public native void setActive(long ptr);
     public native void setInactive(long ptr);

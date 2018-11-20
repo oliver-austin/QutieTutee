@@ -25,7 +25,7 @@ Java_com_example_poe_tutorstage1_TutorStatusActivity_getStatus(JNIEnv *env, jobj
     return status;
 }
 
-JNIEXPORT jint JNICALL
+JNIEXPORT jstring JNICALL
 Java_com_example_poe_tutorstage1_TutorStatusActivity_getEmail(JNIEnv *env, jobject,
 jlong ptr) {
 User *obj = (User *) ptr;
@@ -33,7 +33,7 @@ std::string email = obj->getEmail();
 return env->NewStringUTF(email.c_str());
 }
 
-JNIEXPORT jstring JNICALL
+JNIEXPORT jint JNICALL
 Java_com_example_poe_tutorstage1_TutorStatusActivity_getTutor(JNIEnv *env, jobject,
                                                                jlong ptr) {
     User *obj = (User *) ptr;
