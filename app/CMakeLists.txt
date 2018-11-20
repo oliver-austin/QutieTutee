@@ -17,7 +17,8 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        src/main/cpp/native-lib.cpp )
+        src/main/cpp/native-lib.cpp
+        src/main/cpp/tutor-status.cpp)
 
 add_library (
         sign-in
@@ -30,9 +31,9 @@ add_library (
 )
 
 add_library(
-            tutor-profile
-            SHARED
-            src/main/cpp/tutor-profile.cpp )
+        tutor-profile
+        SHARED
+        src/main/cpp/tutor-profile.cpp )
 
 
 
@@ -70,4 +71,3 @@ target_link_libraries( # Specifies the target library.
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib} )
-

@@ -66,6 +66,13 @@ Java_com_example_poe_tutorstage1_StudentProfileActivity_getTutor(JNIEnv *env, jo
     int tutor = obj->getTutor();
     return tutor;
 }
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_StudentProfileActivity_getStatus(JNIEnv *env, jobject ,
+                                                                 jlong ptr) {
+    User *obj = (User *)ptr;
+    int status = obj->getStatus();
+    return status;
+}
 JNIEXPORT jstring JNICALL
 Java_com_example_poe_tutorstage1_StudentProfileActivity_getBio(JNIEnv *env, jobject ,
                                                                  jlong ptr) {
@@ -80,11 +87,46 @@ Java_com_example_poe_tutorstage1_StudentProfileActivity_getContact(JNIEnv *env, 
     std::string contact = obj->getContact();
     return env->NewStringUTF(contact.c_str());
 }
+JNIEXPORT jstring JNICALL
+Java_com_example_poe_tutorstage1_StudentProfileActivity_getLocation(JNIEnv *env, jobject ,
+                                                                   jlong ptr) {
+    User *obj = (User *)ptr;
+    std::string location = obj->getLocation();
+    return env->NewStringUTF(location.c_str());
+}
 JNIEXPORT jdouble JNICALL
 Java_com_example_poe_tutorstage1_StudentProfileActivity_getRate(JNIEnv *env, jobject ,
                                                                  jlong ptr) {
     User *obj = (User *)ptr;
     double rate = obj->getRate();
     return rate;
+}
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_StudentProfileActivity_getAvailable(JNIEnv *env, jobject ,
+                                                                  jlong ptr) {
+    User *obj = (User *)ptr;
+    int available = obj->getAvailable();
+    return available;
+}
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_StudentProfileActivity_getDuration(JNIEnv *env, jobject ,
+                                                                  jlong ptr) {
+    User *obj = (User *)ptr;
+    int duration = obj->getDuration();
+    return duration;
+}
+JNIEXPORT jint JNICALL
+Java_com_example_poe_tutorstage1_StudentProfileActivity_getInSession(JNIEnv *env, jobject ,
+                                                                  jlong ptr) {
+    User *obj = (User *)ptr;
+    int in_session = obj->getIn_session();
+    return in_session;
+}
+JNIEXPORT jdouble JNICALL
+Java_com_example_poe_tutorstage1_StudentProfileActivity_getStars(JNIEnv *env, jobject ,
+                                                                  jlong ptr) {
+    User *obj = (User *)ptr;
+    double stars = obj->getStars();
+    return stars;
 }
 }
