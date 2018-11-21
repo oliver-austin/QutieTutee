@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 
 import java.io.Serializable;
 
+import okhttp3.ResponseBody;
+
 public interface APICallbacks extends Serializable {
     void onSuccess(@NonNull User user);
 }
