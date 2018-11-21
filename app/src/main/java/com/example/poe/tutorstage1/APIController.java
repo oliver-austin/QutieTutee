@@ -53,6 +53,7 @@ public class APIController implements Serializable {
                     }
 
                 });
+                break;
 
             case 1:                 //Get all tutors
                 Call<List<User>> call2 = api.getTutors();
@@ -73,6 +74,7 @@ public class APIController implements Serializable {
                 }
 
                 });
+                break;
 
 
 
@@ -82,23 +84,25 @@ public class APIController implements Serializable {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.isSuccessful()) {
-                            System.out.println("USER. SUCCESS CODE"+response.code());
                             User user = response.body();
                             callbacks.onSuccess(user);
                             return;
                         } else {
-                            System.out.println("USER. FAIL CODE"+response.code());
-                            User user = response.body();
+                            User user = new User();
+                            user.setEmail("No user found");
                             callbacks.onSuccess(user);
                         }
                     }
 
                     @Override
                     public void onFailure(Call<User> call, Throwable t) {
-                        t.printStackTrace();
+                        User user = new User();
+                        user.setEmail("No user found");
+                        callbacks.onSuccess(user);
                     }
 
                 });
+                break;
 
 
 
@@ -108,9 +112,11 @@ public class APIController implements Serializable {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.isSuccessful()) {
-                            int code = response.code();
+                            User user = response.body();
+                            callbacks.onSuccess(user);
                         } else {
-                            ResponseBody error = response.errorBody();
+                            User user = response.body();
+                            callbacks.onSuccess(user);
                         }
                     }
 
@@ -120,6 +126,7 @@ public class APIController implements Serializable {
                     }
 
                 });
+                break;
 
             case 4:                 //Update specific user
                 Call<User> call5 = api.updateUser(user.getEmail(), user.getTutor(), user);
@@ -127,7 +134,6 @@ public class APIController implements Serializable {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         if (response.isSuccessful()) {
-                            System.out.println("Successful API call");
                         } else {
                             ResponseBody error = response.errorBody();
                         }
@@ -139,6 +145,7 @@ public class APIController implements Serializable {
                     }
 
                 });
+                break;
         }
 
     }
