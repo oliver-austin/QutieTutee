@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
                                 intent.putExtra("userPointer", newUserPtr);
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(MainActivity.this, "User already exists",
+                                Toast.makeText(MainActivity.this, "User does not exist",
                                         Toast.LENGTH_LONG).show();
                             }
                         }
