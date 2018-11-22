@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         retrieveUser.setEmail("buddy@gmail.com");
         retrieveUser.setTutor(0);
-        replaceNullFields(retrieveUser);
         controller.start(2, retrieveUser, new APICallbacks() {
             @Override
             public void onSuccess(@NonNull User user) {
@@ -154,67 +153,43 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         Intent intent = new Intent(this, LandingActivity.class);
         retrieveUser.setEmail(mSignUpEmail.toLowerCase());
         retrieveUser.setPassword(mSignUpPassword);
-        controller.start(2, retrieveUser, new APICallbacks() {
+        if(retrieveUser.getEmail().isEmpty() || retrieveUser.getPassword().isEmpty()){
+            Toast.makeText(MainActivity.this, "Please enter your email address and desired password",
+                    Toast.LENGTH_LONG).show();
+        } else {
+            controller.start(2, retrieveUser, new APICallbacks() {
 
-            @Override
-            public void onSuccess(@NonNull User user) {
-                if(user.email == "No user found"){
-                    retrieveUser.setTutor(1);
-                    controller.start(2, retrieveUser, new APICallbacks() {
-                        @Override
-                                public void onSuccess(@NonNull User user) {
-                            if (user.email == "No user found") {
-                                controller.start(3, retrieveUser, new APICallbacks() {
-                                    @Override
-                                    public void onSuccess(@NonNull User user) {
-                                        long newUserPtr = newUser(retrieveUser);
-                                        intent.putExtra("userPointer", newUserPtr);
-                                        startActivity(intent);
-                                    }
-                                });
-                            } else {
-                                Toast.makeText(MainActivity.this, "User already exists",
-                                        Toast.LENGTH_LONG).show();
+                @Override
+                public void onSuccess(@NonNull User user) {
+                    if(user.email == "No user found"){
+                        retrieveUser.setTutor(1);
+                        controller.start(2, retrieveUser, new APICallbacks() {
+                            @Override
+                            public void onSuccess(@NonNull User user) {
+                                if (user.email == "No user found") {
+                                    controller.start(3, retrieveUser, new APICallbacks() {
+                                        @Override
+                                        public void onSuccess(@NonNull User user) {
+                                            long newUserPtr = newUser(retrieveUser);
+                                            intent.putExtra("userPointer", newUserPtr);
+                                            startActivity(intent);
+                                        }
+                                    });
+                                } else {
+                                    Toast.makeText(MainActivity.this, "User already exists",
+                                            Toast.LENGTH_LONG).show();
+                                }
                             }
-                        }
                         });
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this, "User already exists",
+                                Toast.LENGTH_LONG).show();
+                    }
                 }
-                else{
-                    Toast.makeText(MainActivity.this, "User already exists",
-                            Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-    }
+            });
+        }
 
-    public void replaceNullFields(User user){
-        if(user.getName() == null){
-            user.setName("");
-        }
-        if(user.getEmail() == null) {
-            user.setEmail("");
-        }
-        if(user.getS_courses() == null) {
-            user.setS_courses("");
-        }
-        if(user.getT_courses() == null) {
-            user.setT_courses("");
-        }
-        if(user.getLocation() == null) {
-            user.setLocation("");
-        }
-        if(user.getPassword() == null) {
-            user.setPassword("");
-        }
-        if(user.getBio() == null) {
-            user.setBio("");
-        }
-        if(user.getContact() == null) {
-            user.setContact("");
-        }
-        if(user.getLocation() == null) {
-            user.setLocation("");
-        }
     }
     public native long newUser(User user); //returns C++ pointer to user
 }
