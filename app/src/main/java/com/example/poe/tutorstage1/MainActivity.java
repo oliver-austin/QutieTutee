@@ -152,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     public void signup(String mSignUpEmail, String mSignUpPassword) {
         APIController controller = new APIController();
         Intent intent = new Intent(this, LandingActivity.class);
-        retrieveUser.setEmail(mSignUpEmail);
+        retrieveUser.setEmail(mSignUpEmail.toLowerCase());
         retrieveUser.setPassword(mSignUpPassword);
         controller.start(2, retrieveUser, new APICallbacks() {
 
