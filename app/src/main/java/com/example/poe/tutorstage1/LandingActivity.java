@@ -33,6 +33,13 @@ public class LandingActivity extends AppCompatActivity {
             }
         });
 
+        Button mSignOut = (Button)findViewById((R.id.button2));
+        mSignOut.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view) {
+                signOut(view);
+            }
+        });
+
     }
     public void switchStudentActivity(View view) {
         long ptr = (long)getIntent().getSerializableExtra("userPointer");
@@ -44,6 +51,10 @@ public class LandingActivity extends AppCompatActivity {
         long ptr = (long)getIntent().getSerializableExtra("userPointer");
         Intent intent = new Intent(this, TutorProfileActivity.class);
         intent.putExtra("userPointer", ptr);
+        startActivity(intent);
+    }
+    public void signOut(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 

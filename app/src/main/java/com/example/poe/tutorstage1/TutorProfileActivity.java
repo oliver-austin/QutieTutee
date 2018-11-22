@@ -8,7 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import okhttp3.ResponseBody;
+
 public class TutorProfileActivity extends AppCompatActivity {
+    User user = new User();
     static {
         System.loadLibrary("tutor-profile");
     }
@@ -78,7 +81,7 @@ public class TutorProfileActivity extends AppCompatActivity {
 
             public void onClick(View view){
 //create new user
-                User user = new User();
+
                 //set user fields
                 String userName =  mName.getText().toString();
                 String tutorCourse = mCourse.getText().toString();
@@ -179,6 +182,7 @@ public class TutorProfileActivity extends AppCompatActivity {
     public void switchTutorStatusActivity(View view, long ptr) {
         Intent intent = new Intent(this, TutorStatusActivity.class);
         intent.putExtra("userPointer", ptr);
+        intent.putExtra("javaUser", user);
         startActivity(intent);
     }
     public void switchStudentProfileActivity(View view, long ptr) {
