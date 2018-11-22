@@ -7,11 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 import okhttp3.ResponseBody;
 
@@ -19,8 +14,6 @@ public class StudentProfileActivity extends AppCompatActivity {
     static {
         System.loadLibrary("student-profile");
     }
-    List<User> allUsers = new ArrayList<>();
-    List<User> releventUsers = new ArrayList<>();
     private EditText mName;
     private EditText mCourse;
     private Button mSave;
@@ -85,13 +78,7 @@ public class StudentProfileActivity extends AppCompatActivity {
         Button mTutorListActivity = (Button) findViewById(R.id.tutorListActivityButton);
         mTutorListActivity.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                if(mCourse.getText().toString().equals("")){
-                    Toast.makeText(StudentProfileActivity.this, "Please enter a course",
-                            Toast.LENGTH_LONG).show();
-                }
-                else{
-                    switchTutorListActivity(view, ptr);
-                }
+                switchTutorListActivity(view, ptr);
             }
         });
         mSwitchToTutorActivity = findViewById(R.id.SwitchToTutorButton);
@@ -110,22 +97,8 @@ public class StudentProfileActivity extends AppCompatActivity {
     }
     public void switchTutorListActivity(View view, long ptr) {
         Intent intent = new Intent(this, TutorListActivity.class);
-        APIController controller = new APIController();
-        controller.startGetTutors(allUsers, new APICallbacksGetTutors() {
-            @Override
-            public void onSuccess(@NonNull List<User> users) {
-                String tString;
-                System.out.println("+++SUCCESS");
-                allUsers.addAll(users);
-
-                intent.putExtra("userPointer", ptr);
-                //Bundle bundle = new Bundle();
-                //bundle.putParcelableArrayList("tutorList", allUsers);
-                intent.putExtra("tutorList", (Serializable) allUsers);
-                startActivity(intent);
-            }
-        });
-
+        intent.putExtra("userPointer", ptr);
+        startActivity(intent);
     }
     public void toggleEditProfile(){
         mName.setFocusableInTouchMode(true);
