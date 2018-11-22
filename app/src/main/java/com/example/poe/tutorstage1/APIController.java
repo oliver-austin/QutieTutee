@@ -18,7 +18,38 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIController implements Serializable {
 
     static final String BASE_URL = "http://collingwood.caslab.queensu.ca:5010/";
+    public void startGetTutors(List<User> users, @Nullable APICallbacksGetTutors callbacks){
+        Gson gson = new GsonBuilder()
+                .setLenient()
+                .create();
 
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .build();
+
+        API api = retrofit.create(API.class);
+        Call<List<User>> call2 = api.getTutors();
+        call2.enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if (response.isSuccessful()) {
+                    List<User> userList = response.body();
+                    callbacks.onSuccess(userList);
+                } else {
+                    ResponseBody error = response.errorBody();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                t.printStackTrace();
+            }
+
+        });
+    }
     public void start(int select, User user, @Nullable APICallbacks callbacks) {
         Gson gson = new GsonBuilder()
                 .setLenient()
