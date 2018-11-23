@@ -58,6 +58,9 @@ public class MainActivity extends AppCompatActivity implements Serializable {
 
         retrieveUser.setEmail("buddy@gmail.com");
         retrieveUser.setTutor(0);
+        retrieveUser.setName("buddy");
+        retrieveUser.setS_courses("CMPE320");
+
         controller.start(2, retrieveUser, new APICallbacks() {
             @Override
             public void onSuccess(@NonNull User user) {

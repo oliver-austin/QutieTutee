@@ -20,6 +20,25 @@ public class User implements Serializable {
         stars = 0.0;
 
     }
+
+    public  User(User original){
+        name = original.getName();
+        s_courses = original.getS_courses();
+        t_courses = original.getT_courses();
+        email = original.getEmail();
+        password = original.getPassword();
+        location = original.getLocation();
+        tutor = original.getTutor();
+        bio = original.getBio();
+        contact = original.getContact();
+        status = original.getStatus();
+        available = original.getAvailable();
+        duration = original.getDuration();
+        in_session = original.getIn_session();
+        stars = original.getStars();
+    }
+
+
     private String message;
     String name;
     String s_courses;
@@ -36,8 +55,6 @@ public class User implements Serializable {
     int duration;
     int in_session;
     double stars;
-
-
 
     public String getEmail() {
         return email;
