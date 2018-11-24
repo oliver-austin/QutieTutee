@@ -30,24 +30,22 @@ public class MainActivity extends AppCompatActivity implements Serializable {
         });
 
         Button mSignIn = (Button) findViewById(R.id.button2);
-        EditText mSignInEmail = (EditText) findViewById(R.id.editText4);
-        EditText mSignInPassword = (EditText) findViewById(R.id.editText5);
+        EditText mEmail = (EditText) findViewById(R.id.editText);
+        EditText mPassword = (EditText) findViewById(R.id.editText3);
         mSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String signInEmailText = mSignInEmail.getText().toString();
-                String signInPasswordText = mSignInPassword.getText().toString();
+                String signInEmailText = mEmail.getText().toString();
+                String signInPasswordText = mPassword.getText().toString();
                 signin(signInEmailText, signInPasswordText); }
         });
 
         Button mSignUp = (Button) findViewById(R.id.button);
-        EditText mSignUpEmail = (EditText) findViewById(R.id.editText);
-        EditText mSignUpPassword = (EditText) findViewById(R.id.editText3);
         mSignUp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String signUpEmailText = mSignUpEmail.getText().toString();
-                String signUpPasswordText = mSignUpPassword.getText().toString();
+                String signUpEmailText = mEmail.getText().toString();
+                String signUpPasswordText = mPassword.getText().toString();
                 signup(signUpEmailText, signUpPasswordText); }
         });
     }
