@@ -13,11 +13,11 @@
     //List Page
     <string name="title_activity_tutor_list">tutorList</string>
     <string name="name">Name:</string>
-    <string name="courses">Courses I can teach:</string>
+    <string name="courses">Courses I teach:</string>
     <string name="contact_info">Contact Info:</string>
     <string name="rate">Rate:</string>
     <string name="bio">Bio:</string>
-    <string name="location">Location:</string>
+    <string name="location">Current Location:</string>
     <string name="available_offline">Available Offline:</string>
     <string name="set_status">Set Status</string>
     <string name="confirm">Confirm</string>
