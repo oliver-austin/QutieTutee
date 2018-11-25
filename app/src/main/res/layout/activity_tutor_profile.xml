@@ -109,41 +109,43 @@
 
     <Button
         android:id="@+id/SetStatusBox"
-        android:layout_width="95dp"
+        android:layout_width="149dp"
         android:layout_height="47dp"
-        android:background="@android:color/holo_green_light"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_goto_status"
         android:text="@string/set_status"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/enterEditMode"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="113dp"
+        android:layout_height="41dp"
+        android:background="@drawable/button_home"
         android:contentDescription="Switch to editing mode"
         android:text="edit"
+        android:textColor="#0099CC"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/saveProfile"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="113dp"
+        android:layout_height="42dp"
+        android:background="@drawable/button_home"
         android:contentDescription="Switch to editing mode"
         android:text="save"
+        android:textColor="#0099CC"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/SwitchToStudentButton"
-        android:layout_width="97dp"
+        android:layout_width="125dp"
         android:layout_height="43dp"
-        android:background="@android:color/holo_orange_light"
+        android:background="@drawable/button_home2"
         android:text="@string/switch_to_student"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
@@ -174,8 +176,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="231dp"
+        android:layout_width="451dp"
+        android:layout_height="253dp"
         android:cropToPadding="false"
         android:elevation="0dp"
         app:layout_constraintStart_toStartOf="parent"
