@@ -8,83 +8,90 @@
 
     <EditText
         android:id="@+id/ContactInfoTextBox"
-        android:layout_width="214dp"
-        android:layout_height="43dp"
+        android:layout_width="288dp"
+        android:layout_height="62dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:textAlignment="center"
-        app:layout_constraintTop_toBottomOf="@+id/LocationTextBox"
-        tools:layout_editor_absoluteX="183dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="bottom"
+        app:layout_constraintTop_toBottomOf="@+id/LocationTextBox" />
 
     <TextView
         android:id="@+id/CoursesText"
         android:layout_width="112dp"
         android:layout_height="22dp"
-        android:layout_marginTop="392dp"
-        android:layout_marginEnd="56dp"
+        android:layout_marginTop="328dp"
+        android:layout_marginEnd="4dp"
         android:text="@string/courses"
         app:layout_constraintEnd_toStartOf="@+id/CoursesTextBox"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/NameTextBox"
-        android:layout_width="217dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="168dp"
+        android:layout_width="285dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="10dp"
         android:ems="10"
+        android:gravity="center_horizontal"
         android:hint="Name"
         android:inputType="textPersonName"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@+id/BioTextBox"
-        app:layout_constraintHorizontal_bias="0.38"
-        app:layout_constraintStart_toStartOf="@+id/BioTextBox"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/CoursesTextBox"
-        android:layout_width="216dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="56dp"
+        android:layout_width="290dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="60dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/RateTextBox"
-        tools:layout_editor_absoluteX="181dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RateTextBox" />
 
     <EditText
         android:id="@+id/RateTextBox"
-        android:layout_width="45dp"
-        android:layout_height="37dp"
+        android:layout_width="80dp"
+        android:layout_height="57dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
+        android:elevation="10dp"
         android:ems="10"
         android:inputType="numberDecimal"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="24dp"
+        android:gravity="center_horizontal"
         app:layout_constraintEnd_toStartOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.986"
+        app:layout_constraintHorizontal_bias="0.968"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/BioTextBox" />
 
     <EditText
         android:id="@+id/BioTextBox"
-        android:layout_width="154dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="382dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="12dp"
+        android:elevation="10dp"
         android:ems="10"
         android:hint="Year and Program"
         android:inputType="textPersonName"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.81"
+        app:layout_constraintHorizontal_bias="0.587"
         app:layout_constraintStart_toStartOf="@+id/RateTextBox"
         app:layout_constraintTop_toBottomOf="@+id/NameTextBox" />
 
     <TextView
         android:id="@+id/LocationText"
-        android:layout_width="109dp"
-        android:layout_height="23dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="56dp"
+        android:layout_width="112dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="4dp"
         android:text="@string/location"
         android:visibility="visible"
         app:layout_constraintEnd_toStartOf="@+id/LocationTextBox"
@@ -92,13 +99,13 @@
 
     <EditText
         android:id="@+id/LocationTextBox"
-        android:layout_width="216dp"
-        android:layout_height="43dp"
+        android:layout_width="289dp"
+        android:layout_height="61dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintTop_toBottomOf="@+id/CoursesTextBox"
-        tools:layout_editor_absoluteX="181dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CoursesTextBox" />
 
     <Button
         android:id="@+id/SetStatusBox"
@@ -144,23 +151,35 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="32dp"
-        android:layout_height="26dp"
-        android:layout_marginEnd="124dp"
+        android:layout_width="50dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="108dp"
+        android:elevation="10dp"
         android:text="$/h"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="279dp" />
+        app:layout_constraintTop_toBottomOf="@+id/BioTextBox" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="131dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="36dp"
-        android:text="TextView"
+        android:layout_width="118dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="36dp"
+        android:text="Contact Information"
         app:layout_constraintEnd_toStartOf="@+id/ContactInfoTextBox"
         app:layout_constraintTop_toBottomOf="@+id/LocationText"
         tools:text="Contact Information:" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="231dp"
+        android:cropToPadding="false"
+        android:elevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gradient_blue_landscaper" />
 
 </android.support.constraint.ConstraintLayout>
