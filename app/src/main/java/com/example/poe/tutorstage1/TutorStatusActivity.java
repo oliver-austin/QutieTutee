@@ -22,7 +22,7 @@ public class TutorStatusActivity extends AppCompatActivity {
 
         mActive = findViewById(R.id.buttonActive);
         mInactive = findViewById(R.id.buttonInactive);
-
+        user.setStatus(getStatus(ptr));
         if (user.getStatus()==0){
             mActive.setVisibility(View.INVISIBLE);
             mInactive.setVisibility(View.VISIBLE);
