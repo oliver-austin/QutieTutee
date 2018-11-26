@@ -22,69 +22,67 @@ public class MainActivity extends AppCompatActivity implements Serializable {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button mLandingActivity = (Button)findViewById(R.id.landingActivityButton);
-        mLandingActivity.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View view){
-                switchLandingActivity(view);
-            }
-        });
+//        Button mLandingActivity = (Button)findViewById(R.id.landingActivityButton);
+//        mLandingActivity.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View view){
+//                switchLandingActivity(view);
+//            }
+//        });
 
         Button mSignIn = (Button) findViewById(R.id.button2);
-        EditText mSignInEmail = (EditText) findViewById(R.id.editText4);
-        EditText mSignInPassword = (EditText) findViewById(R.id.editText5);
+        EditText mEmail = (EditText) findViewById(R.id.editText);
+        EditText mPassword = (EditText) findViewById(R.id.editText3);
         mSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String signInEmailText = mSignInEmail.getText().toString();
-                String signInPasswordText = mSignInPassword.getText().toString();
+                String signInEmailText = mEmail.getText().toString();
+                String signInPasswordText = mPassword.getText().toString();
                 signin(signInEmailText, signInPasswordText); }
         });
 
         Button mSignUp = (Button) findViewById(R.id.button);
-        EditText mSignUpEmail = (EditText) findViewById(R.id.editText);
-        EditText mSignUpPassword = (EditText) findViewById(R.id.editText3);
         mSignUp.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String signUpEmailText = mSignUpEmail.getText().toString();
-                String signUpPasswordText = mSignUpPassword.getText().toString();
+                String signUpEmailText = mEmail.getText().toString();
+                String signUpPasswordText = mPassword.getText().toString();
                 signup(signUpEmailText, signUpPasswordText); }
         });
     }
-    public void switchLandingActivity(View view) {
-        APIController controller = new APIController();
-
-        Intent intent = new Intent(this, LandingActivity.class);
-
-        retrieveUser.setEmail("buddy@gmail.com");
-        retrieveUser.setTutor(0);
-        retrieveUser.setName("buddy");
-        retrieveUser.setS_courses("CMPE320");
-
-        controller.start(2, retrieveUser, new APICallbacks() {
-            @Override
-            public void onSuccess(@NonNull User user) {
-                retrieveUser.setName(user.getName());
-                retrieveUser.setT_courses(user.getT_courses());
-                retrieveUser.setLocation(user.getLocation());
-                retrieveUser.setContact(user.getContact());
-                retrieveUser.setBio(user.getBio());
-                retrieveUser.setRate(user.getRate());
-                retrieveUser.setTutor(user.getTutor());
-                retrieveUser.setPassword(user.getPassword());
-                retrieveUser.setS_courses(user.getS_courses());
-                retrieveUser.setStatus(user.getStatus());
-                retrieveUser.setEmail(user.getEmail());
-                retrieveUser.setAvailable(user.getAvailable());
-                retrieveUser.setDuration(user.getDuration());
-                retrieveUser.setIn_session(user.getIn_session());
-                retrieveUser.setStars(user.getStars());
-            }
-        });
-        long newUserPtr = newUser(retrieveUser);
-        intent.putExtra("userPointer", newUserPtr);
-        startActivity(intent);
-    }
+//    public void switchLandingActivity(View view) {
+//        APIController controller = new APIController();
+//
+//        Intent intent = new Intent(this, LandingActivity.class);
+//
+//        retrieveUser.setEmail("buddy@gmail.com");
+//        retrieveUser.setTutor(0);
+//        retrieveUser.setName("buddy");
+//        retrieveUser.setS_courses("CMPE320");
+//
+//        controller.start(2, retrieveUser, new APICallbacks() {
+//            @Override
+//            public void onSuccess(@NonNull User user) {
+//                retrieveUser.setName(user.getName());
+//                retrieveUser.setT_courses(user.getT_courses());
+//                retrieveUser.setLocation(user.getLocation());
+//                retrieveUser.setContact(user.getContact());
+//                retrieveUser.setBio(user.getBio());
+//                retrieveUser.setRate(user.getRate());
+//                retrieveUser.setTutor(user.getTutor());
+//                retrieveUser.setPassword(user.getPassword());
+//                retrieveUser.setS_courses(user.getS_courses());
+//                retrieveUser.setStatus(user.getStatus());
+//                retrieveUser.setEmail(user.getEmail());
+//                retrieveUser.setAvailable(user.getAvailable());
+//                retrieveUser.setDuration(user.getDuration());
+//                retrieveUser.setIn_session(user.getIn_session());
+//                retrieveUser.setStars(user.getStars());
+//            }
+//        });
+//        long newUserPtr = newUser(retrieveUser);
+//        intent.putExtra("userPointer", newUserPtr);
+//        startActivity(intent);
+//    }
 
     public void signin(String mSignInEmail, String mSignInPassword) {
         APIController controller = new APIController();

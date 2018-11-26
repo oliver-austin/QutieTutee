@@ -6,181 +6,182 @@
     android:layout_height="match_parent"
     tools:context=".TutorProfileActivity">
 
-    <TextView
-        android:id="@+id/userType"
-        android:layout_width="75dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="You are in Tutor Mode"
-        android:text="Tutor"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="36sp"
-        app:fontFamily="cursive"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <EditText
         android:id="@+id/ContactInfoTextBox"
-        android:layout_width="214dp"
-        android:layout_height="43dp"
+        android:layout_width="288dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="@+id/RateText"
-        app:layout_constraintStart_toStartOf="@+id/RateText"
-        app:layout_constraintTop_toBottomOf="@+id/ContactText" />
-
-    <TextView
-        android:id="@+id/NameText"
-        android:layout_width="45dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="8dp"
-        android:text="@string/name"
-        app:layout_constraintEnd_toEndOf="@+id/NameTextBox"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/NameTextBox"
-        app:layout_constraintTop_toBottomOf="@+id/userType" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="bottom"
+        app:layout_constraintTop_toBottomOf="@+id/LocationTextBox" />
 
     <TextView
         android:id="@+id/CoursesText"
-        android:layout_width="130dp"
-        android:layout_height="23dp"
+        android:layout_width="112dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="328dp"
+        android:layout_marginEnd="4dp"
         android:text="@string/courses"
-        app:layout_constraintEnd_toEndOf="@+id/CoursesTextBox"
-        app:layout_constraintHorizontal_bias="0.488"
-        app:layout_constraintStart_toStartOf="@+id/CoursesTextBox"
-        app:layout_constraintTop_toBottomOf="@+id/NameTextBox" />
-
-    <TextView
-        android:id="@+id/ContactText"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:text="@string/contact_info"
-        app:layout_constraintEnd_toEndOf="@+id/ContactInfoTextBox"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="@+id/ContactInfoTextBox"
-        app:layout_constraintTop_toBottomOf="@+id/CoursesTextBox" />
+        app:layout_constraintEnd_toStartOf="@+id/CoursesTextBox"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/NameTextBox"
-        android:layout_width="212dp"
-        android:layout_height="43dp"
+        android:layout_width="285dp"
+        android:layout_height="76dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="10dp"
         android:ems="10"
+        android:gravity="center_horizontal"
+        android:hint="Name"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/CoursesText"
-        app:layout_constraintStart_toStartOf="@+id/CoursesText"
-        app:layout_constraintTop_toBottomOf="@+id/NameText" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/CoursesTextBox"
-        android:layout_width="216dp"
-        android:layout_height="43dp"
+        android:layout_width="290dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="60dp"
         android:ems="10"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="@+id/ContactText"
-        app:layout_constraintStart_toStartOf="@+id/ContactText"
-        app:layout_constraintTop_toBottomOf="@+id/CoursesText" />
-
-    <TextView
-        android:id="@+id/RateText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/rate"
-        app:layout_constraintEnd_toEndOf="@+id/RateTextBox"
-        app:layout_constraintStart_toStartOf="@+id/RateTextBox"
-        app:layout_constraintTop_toBottomOf="@+id/ContactInfoTextBox" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/RateTextBox" />
 
     <EditText
         android:id="@+id/RateTextBox"
-        android:layout_width="216dp"
-        android:layout_height="43dp"
+        android:layout_width="80dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:elevation="10dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        app:layout_constraintEnd_toEndOf="@+id/BioText"
-        app:layout_constraintStart_toStartOf="@+id/BioText"
-        app:layout_constraintTop_toBottomOf="@+id/RateText" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textSize="24dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.968"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BioTextBox" />
 
     <EditText
         android:id="@+id/BioTextBox"
-        android:layout_width="216dp"
-        android:layout_height="43dp"
+        android:layout_width="382dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="12dp"
+        android:elevation="10dp"
         android:ems="10"
+        android:hint="Year and Program"
         android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BioText" />
-
-    <TextView
-        android:id="@+id/BioText"
-        android:layout_width="28dp"
-        android:layout_height="22dp"
-        android:text="@string/bio"
-        android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/BioTextBox"
-        app:layout_constraintStart_toStartOf="@+id/BioTextBox"
-        app:layout_constraintTop_toBottomOf="@+id/RateTextBox" />
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintHorizontal_bias="0.587"
+        app:layout_constraintStart_toStartOf="@+id/RateTextBox"
+        app:layout_constraintTop_toBottomOf="@+id/NameTextBox" />
 
     <TextView
         android:id="@+id/LocationText"
-        android:layout_width="60dp"
+        android:layout_width="112dp"
         android:layout_height="22dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="4dp"
         android:text="@string/location"
         android:visibility="visible"
-        app:layout_constraintEnd_toEndOf="@+id/BioTextBox"
-        app:layout_constraintStart_toStartOf="@+id/BioTextBox"
-        app:layout_constraintTop_toBottomOf="@+id/BioTextBox"/>
+        app:layout_constraintEnd_toStartOf="@+id/LocationTextBox"
+        app:layout_constraintTop_toBottomOf="@+id/CoursesText" />
+
     <EditText
         android:id="@+id/LocationTextBox"
-        android:layout_width="216dp"
-        android:layout_height="43dp"
+        android:layout_width="289dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/LocationText" />
+        app:layout_constraintTop_toBottomOf="@+id/CoursesTextBox" />
 
     <Button
         android:id="@+id/SetStatusBox"
-        android:layout_width="95dp"
+        android:layout_width="149dp"
         android:layout_height="47dp"
-        android:background="@android:color/holo_green_light"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/button_goto_status"
         android:text="@string/set_status"
         android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/enterEditMode"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="113dp"
+        android:layout_height="41dp"
+        android:background="@drawable/button_home"
         android:contentDescription="Switch to editing mode"
         android:text="edit"
+        android:textColor="#0099CC"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/saveProfile"
-        style="@style/Widget.AppCompat.Button.Small"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="113dp"
+        android:layout_height="42dp"
+        android:background="@drawable/button_home"
         android:contentDescription="Switch to editing mode"
         android:text="save"
+        android:textColor="#0099CC"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/SwitchToStudentButton"
-        android:layout_width="97dp"
+        android:layout_width="125dp"
         android:layout_height="43dp"
-        android:background="@android:color/holo_orange_light"
+        android:background="@drawable/button_home2"
         android:text="@string/switch_to_student"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/enterEditMode" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="50dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="108dp"
+        android:elevation="10dp"
+        android:text="$/h"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/BioTextBox" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="118dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="36dp"
+        android:text="Contact Information"
+        app:layout_constraintEnd_toStartOf="@+id/ContactInfoTextBox"
+        app:layout_constraintTop_toBottomOf="@+id/LocationText"
+        tools:text="Contact Information:" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="451dp"
+        android:layout_height="253dp"
+        android:cropToPadding="false"
+        android:elevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gradient_blue_landscaper" />
 
 </android.support.constraint.ConstraintLayout>
