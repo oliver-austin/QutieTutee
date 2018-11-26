@@ -27,7 +27,6 @@ public class TutorListActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private tutorListAdapter adapter;
     private List<tutorListItem> listItems;
-    List<User> releventUsers = new ArrayList<>();
     private PopupWindow popupWindow;
     private LayoutInflater layoutInflater;
     private TextView mName;
@@ -47,15 +46,24 @@ public class TutorListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tutor_search);
         long ptr = (long)getIntent().getSerializableExtra("userPointer");
         Intent intent = getIntent();
-        List<User> allTutors = (List<User>) intent.getSerializableExtra("tutorList");
+        List<User> allTutors = new ArrayList<>();
+        allTutors = (List<User>) intent.getSerializableExtra("tutorList");
 
         String courseSeeking = getStudentCourse(ptr);
-        releventUsers = new ArrayList<>();
-
+        List<User> releventUsers = new ArrayList<>();
+        Boolean flag =false;
         for(int i=0; i<allTutors.size(); i++){
-            if(allTutors.get(i).getT_courses().equals(courseSeeking)){
+            if(allTutors.get(i).getT_courses().equals(courseSeeking)) {
                 System.out.println("+++Tutor:" + i + " " + allTutors.get(i).email);
-                releventUsers.add(allTutors.get(i));
+                String duplicateEmail = allTutors.get(i).getEmail();
+                for (int j = 0; j < releventUsers.size(); j++) {
+                    if (releventUsers.get(j).getEmail().equals(duplicateEmail)) {
+                        flag = true;
+                    }
+                }
+                if (flag == false) {
+                    releventUsers.add(allTutors.get(i));
+                }
             }
         }
 
@@ -68,12 +76,13 @@ public class TutorListActivity extends AppCompatActivity {
         //Read in tutors from relevant users
         if(releventUsers.isEmpty()){
             tutorListItem aTutor = new tutorListItem("No tutors available", "nowhere", "$" , true);
+            listItems.add(aTutor);
         }
         else{
         for(int i = 0; i < releventUsers.size(); i++){
             tutorListItem aTutor = new tutorListItem(releventUsers.get(i).getName(), releventUsers.get(i).getLocation(), "$" + releventUsers.get(i).getRate(), true);
             listItems.add(aTutor);
-        }
+        }}
 
         adapter = new tutorListAdapter(listItems, this);
         recyclerView.setAdapter(adapter);
@@ -111,7 +120,7 @@ public class TutorListActivity extends AppCompatActivity {
                 });
             }
         }); }
-    }
+
     public native String getStudentCourse(long ptr);
 }
 
