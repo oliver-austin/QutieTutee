@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">tutorStage1</string>
+    <string name="app_name">QutieTutee</string>
 
     //Sign in Page
     <string name="email_message">Enter Your Email</string>
